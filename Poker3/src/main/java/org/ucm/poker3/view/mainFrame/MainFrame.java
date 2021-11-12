@@ -5,24 +5,26 @@
 package org.ucm.poker3.view.mainFrame;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import org.ucm.poker3.main.Main;
 
 public class MainFrame extends javax.swing.JFrame {
-
+    JLabel labelFoto;
+    MainPanel mP;
     public MainFrame() {
         initComponents();
         this.setTitle("Practica 3");
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        //Image fondo = new ImageIcon(getClass().getResource("/resources/fondos/FondoMain.png"));
-        //this.add(new MainPanel());
-        //this.add(new JLabel(new ImageIcon("/resources/fondos/FondoMain.png")));
-        //BufferedImage fondo = ImageIO.read(new java.net.URL())
-        Graphics g = null;
-        MainPanel mP =new MainPanel(g);
-        this.add(mP);
+        mP = new MainPanel();       
+        add(mP);
+        iniImagenFondo();
+        
         
     }
 
@@ -51,7 +53,16 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+    private void iniImagenFondo(){
+        try {
+            BufferedImage myPicture = ImageIO.read(new File("images/fondos/FondoMain.png"));
+            labelFoto = new JLabel(new ImageIcon(myPicture));
+            labelFoto.setBounds(0,0 , 1200, 600);
+            add(labelFoto);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

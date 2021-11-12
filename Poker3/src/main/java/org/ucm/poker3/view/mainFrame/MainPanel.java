@@ -4,33 +4,32 @@
  */
 package org.ucm.poker3.view.mainFrame;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class MainPanel extends JPanel {
-
-    public MainPanel(Graphics g) {
-        paintComponent(g);
+    private JLabel labelFoto;
+    public MainPanel() {
+        setBounds(850,0,350,600);
+        setBackground(new Color(76,111,145));
+        //iniImagenFondo();
     }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        Image fondo = null;
+    private void iniImagenFondo(){
         try {
-            URL url = this.getClass().getClassLoader().getResource("images/fondos/FondoMain.png");
-            BufferedImage image = ImageIO.read(url);
-            fondo = new ImageIcon(image).getImage();
+            BufferedImage myPicture = ImageIO.read(new File("images/fondos/MarcoOpciones.png"));
+            labelFoto = new JLabel(new ImageIcon(myPicture));
+            labelFoto.setBounds(0,0 , 400, 600);
+            add(labelFoto);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        }
-        if (fondo != null) {
-            super.paintComponent(g);
-            g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
         }
     }
 
