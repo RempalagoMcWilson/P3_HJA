@@ -14,31 +14,29 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import org.ucm.poker3.view.mainFrame.opciones.PanelOpcionesBoard;
+import org.ucm.poker3.view.mainFrame.opciones.PanelOpcionesCalcular;
 import org.ucm.poker3.view.mainFrame.opciones.PanelOpcionesJugador;
 
 public class MainPanel extends JPanel {
     private JLabel labelFoto;
     private PanelOpcionesJugador pJ;
+    private PanelOpcionesCalcular pC;
+    private PanelOpcionesBoard pB;
     public MainPanel() {
         iniGUI();
-        //iniImagenFondo();
     }
     private void iniGUI(){
         setBounds(850,0,350,600);
         setBackground(new Color(76,111,145));
         setLayout(null);
+        
+        pC = new PanelOpcionesCalcular();
         pJ = new PanelOpcionesJugador();
+        pB = new PanelOpcionesBoard();
+        add(pC);
         add(pJ);
-    }
-    private void iniImagenFondo(){
-        try {
-            BufferedImage myPicture = ImageIO.read(new File("images/fondos/MarcoOpciones.png"));
-            labelFoto = new JLabel(new ImageIcon(myPicture));
-            labelFoto.setBounds(0,0 , 400, 600);
-            add(labelFoto);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        add(pB);
     }
 
 }

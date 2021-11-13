@@ -1,3 +1,4 @@
+
 package org.ucm.poker3.view.mainFrame.opciones;
 
 import java.awt.Color;
@@ -13,42 +14,36 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
-public class PanelOpcionesJugador extends JPanel {
-
+public class PanelOpcionesBoard extends JPanel{
+    
+    
     private JSpinner numJugador;
-    private JButton foldB;
     private JButton randomB;
     private JButton okB;
     private JTextField cartasTF;
     private JLabel infoSpinner;
     private JLabel infoTField;
     
-    public PanelOpcionesJugador() {
+    public PanelOpcionesBoard() {
         iniGUI();
     }
     
     private void iniGUI() {
         setLayout(null);
         setBackground(new Color(76,111,145));
-        setBounds(0,70,330,150);
+        setBounds(0,220,330,150);
 
         Border b = BorderFactory.createLineBorder(Color.black, 2);
-        setBorder(BorderFactory.createTitledBorder(b, "Opciones JUGADOR ", TitledBorder.LEFT, TitledBorder.TOP));
+        setBorder(BorderFactory.createTitledBorder(b, "Opciones BOARD ", TitledBorder.LEFT, TitledBorder.TOP));
         
         infoSpinner = new JLabel();
-        infoSpinner.setText("Seleccionar NºJugador:");
-        infoSpinner.setBounds(10, 20, 135, 30);
+        infoSpinner.setText("Seleccionar Nº de cartas en el board:");
+        infoSpinner.setBounds(10, 20, 230, 30);
         
-        SpinnerNumberModel modeloSpinner = new SpinnerNumberModel(1, 1, 6, 1);
+        SpinnerNumberModel modeloSpinner = new SpinnerNumberModel(1, 1, 5, 1);
         numJugador = new JSpinner(modeloSpinner);
-        numJugador.setBounds(155, 20, 40, 30);
-        numJugador.setToolTipText("Seleccionar numero de jugador");
-        
-        
-        foldB = new JButton();
-        foldB.setBounds(210, 20, 100, 30);
-        foldB.setText("FOLD");
-        foldBListener();
+        numJugador.setBounds(240, 20, 40, 30);
+        numJugador.setToolTipText("Seleccionar Nº de cartas en el board:");
         
         randomB = new JButton();
         randomB.setBounds(10, 70, 130, 30);
@@ -69,20 +64,10 @@ public class PanelOpcionesJugador extends JPanel {
         
         add(infoSpinner);
         add(numJugador);
-        add(foldB);
         add(randomB);
         add(okB);
         add(infoTField);
         add(cartasTF);
-    }
-    
-    private void foldBListener() {
-        foldB.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                System.out.println("fold de jugador " + numJugador.getValue());
-            }
-        });
     }
     
     private void randomBListener() {

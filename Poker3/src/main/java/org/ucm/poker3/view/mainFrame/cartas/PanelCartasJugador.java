@@ -72,16 +72,16 @@ public class PanelCartasJugador extends JPanel {
                 setBounds(60, 400, 100, 120);
                 break;
             case 3:
-                setBounds(350, 50, 100, 120);
-                break;
-            case 4:
                 setBounds(350, 430, 100, 120);
+                break;
+            case 4:                              
+                setBounds(600, 400, 100, 120);
                 break;
             case 5:
                 setBounds(600, 100, 100, 120);
                 break;
             case 6:
-                setBounds(600, 400, 100, 120);
+                setBounds(350, 50, 100, 120);
                 break;
         }
     }
