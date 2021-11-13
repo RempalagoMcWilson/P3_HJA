@@ -14,13 +14,21 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import org.ucm.poker3.view.mainFrame.opciones.PanelOpcionesJugador;
 
 public class MainPanel extends JPanel {
     private JLabel labelFoto;
+    private PanelOpcionesJugador pJ;
     public MainPanel() {
+        iniGUI();
+        //iniImagenFondo();
+    }
+    private void iniGUI(){
         setBounds(850,0,350,600);
         setBackground(new Color(76,111,145));
-        //iniImagenFondo();
+        setLayout(null);
+        pJ = new PanelOpcionesJugador();
+        add(pJ);
     }
     private void iniImagenFondo(){
         try {

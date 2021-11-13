@@ -12,17 +12,47 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import org.ucm.poker3.main.Main;
+import org.ucm.poker3.model.cartas.Carta;
+import org.ucm.poker3.model.cartas.Jugador;
+import org.ucm.poker3.view.mainFrame.cartas.PanelCartasJugador;
 
 public class MainFrame extends javax.swing.JFrame {
     JLabel labelFoto;
     MainPanel mP;
     public MainFrame() {
-        initComponents();
+        //initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
+        this.setBounds(0, 0, 1200, 600);
         this.setTitle("Practica 3");
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         mP = new MainPanel();       
         add(mP);
+        PanelCartasJugador pCJ1
+                = new PanelCartasJugador
+                    (new Jugador(new Carta(3,'c', true),new Carta(2,'c', true), 1));
+        add(pCJ1);
+        PanelCartasJugador pCJ2
+                = new PanelCartasJugador
+                    (new Jugador(new Carta(9,'s', true),new Carta(8,'h', true), 2));
+        add(pCJ2);
+        PanelCartasJugador pCJ3
+                = new PanelCartasJugador
+                    (new Jugador(new Carta(4,'d', true),new Carta(2,'h', true), 3));
+        add(pCJ3);
+        PanelCartasJugador pCJ4
+                = new PanelCartasJugador
+                    (new Jugador(new Carta(8,'s', true),new Carta(6,'h', true), 4));
+        add(pCJ4);
+        PanelCartasJugador pCJ5
+                = new PanelCartasJugador
+                    (new Jugador(new Carta(5,'d', true),new Carta(7,'d', true), 5));
+        add(pCJ5);
+        PanelCartasJugador pCJ6
+                = new PanelCartasJugador
+                    (new Jugador(new Carta(6,'c', true),new Carta(6,'s', true), 6));
+        add(pCJ6);
         iniImagenFondo();
         
         
