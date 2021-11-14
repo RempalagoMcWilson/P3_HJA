@@ -9,11 +9,14 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
+import org.ucm.poker3.control.Controller;
 
 public class PanelOpcionesCalcular extends JPanel{
     private JButton calcularB;
+    private Controller ctrl;
     
-    public PanelOpcionesCalcular(){
+    public PanelOpcionesCalcular(Controller ctrl){
+        this.ctrl = ctrl;
         iniGUI();
     }
     
@@ -35,7 +38,7 @@ public class PanelOpcionesCalcular extends JPanel{
         calcularB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                System.out.println("Calcular equity");
+                ctrl.calculaEquity();
             }
         });
     }

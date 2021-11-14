@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import org.ucm.poker3.control.Controller;
 import org.ucm.poker3.view.mainFrame.opciones.PanelOpcionesBoard;
 import org.ucm.poker3.view.mainFrame.opciones.PanelOpcionesCalcular;
 import org.ucm.poker3.view.mainFrame.opciones.PanelOpcionesJugador;
@@ -23,7 +24,9 @@ public class MainPanel extends JPanel {
     private PanelOpcionesJugador pJ;
     private PanelOpcionesCalcular pC;
     private PanelOpcionesBoard pB;
-    public MainPanel() {
+    private Controller ctrl;
+    public MainPanel(Controller ctrl){
+        this.ctrl = ctrl;
         iniGUI();
     }
     private void iniGUI(){
@@ -31,7 +34,7 @@ public class MainPanel extends JPanel {
         setBackground(new Color(76,111,145));
         setLayout(null);
         
-        pC = new PanelOpcionesCalcular();
+        pC = new PanelOpcionesCalcular(ctrl);
         pJ = new PanelOpcionesJugador();
         pB = new PanelOpcionesBoard();
         add(pC);

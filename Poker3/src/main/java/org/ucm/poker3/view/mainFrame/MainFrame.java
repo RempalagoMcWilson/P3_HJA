@@ -11,7 +11,9 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import org.ucm.poker3.control.Controller;
 import org.ucm.poker3.main.Main;
+import org.ucm.poker3.model.cartas.Board;
 import org.ucm.poker3.model.cartas.Carta;
 import org.ucm.poker3.model.cartas.Jugador;
 import org.ucm.poker3.view.mainFrame.cartas.PanelCartasJugador;
@@ -19,7 +21,9 @@ import org.ucm.poker3.view.mainFrame.cartas.PanelCartasJugador;
 public class MainFrame extends javax.swing.JFrame {
     JLabel labelFoto;
     MainPanel mP;
-    public MainFrame() {
+    Controller ctrl;
+    public MainFrame(Controller ctrl) {
+        this.ctrl = ctrl;
         //initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -27,34 +31,48 @@ public class MainFrame extends javax.swing.JFrame {
         this.setTitle("Practica 3");
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        mP = new MainPanel();       
+        mP = new MainPanel(ctrl);       
         add(mP);
         PanelCartasJugador pCJ1
                 = new PanelCartasJugador
-                    (new Jugador(new Carta(3,'c', true),new Carta(2,'c', true), 1));
+                    (new Jugador(new Carta(14,'d', true),new Carta(14,'c', true), 1), ctrl);
         add(pCJ1);
         PanelCartasJugador pCJ2
                 = new PanelCartasJugador
-                    (new Jugador(new Carta(9,'s', true),new Carta(8,'h', true), 2));
+                    (new Jugador(new Carta(8,'d', true),new Carta(8,'h', true), 2), ctrl);
         add(pCJ2);
         PanelCartasJugador pCJ3
                 = new PanelCartasJugador
-                    (new Jugador(new Carta(4,'d', true),new Carta(2,'h', true), 3));
+                    (new Jugador(new Carta(6,'d', true),new Carta(7,'c', true), 3), ctrl);
         add(pCJ3);
         PanelCartasJugador pCJ4
                 = new PanelCartasJugador
-                    (new Jugador(new Carta(8,'s', true),new Carta(6,'h', true), 4));
+                    (new Jugador(new Carta(13,'c', true),new Carta(12,'s', true), 4), ctrl);
         add(pCJ4);
         PanelCartasJugador pCJ5
                 = new PanelCartasJugador
-                    (new Jugador(new Carta(5,'d', true),new Carta(7,'d', true), 5));
+                    (new Jugador(new Carta(14,'s', true),new Carta(13,'s', true), 5), ctrl);
         add(pCJ5);
         PanelCartasJugador pCJ6
                 = new PanelCartasJugador
-                    (new Jugador(new Carta(6,'c', true),new Carta(6,'s', true), 6));
+                    (new Jugador(new Carta(12,'h', true),new Carta(12,'d', true), 6), ctrl);
         add(pCJ6);
-        iniImagenFondo();
-        
+        iniImagenFondo();// c 1, s 0, d 2, h 3
+        ctrl.getMazo().meteCarta(14-2, 2);ctrl.getMazo().meteCarta(14-2, 1);
+        ctrl.getMazo().meteCarta(8-2, 2);ctrl.getMazo().meteCarta(8-2, 3);
+        Board b = new Board();
+        /*b.addCarta(new Carta(4,'d', true));
+        b.addCarta(new Carta(5,'c', true));
+        b.addCarta(new Carta(7,'d', true));
+        //b.addCarta(new Carta(6,'s', true));
+        ctrl.getMazo().meteCarta(4-2, 2);ctrl.getMazo().meteCarta(7-2, 2);
+        ctrl.getMazo().meteCarta(5-2, 1);//ctrl.getMazo().meteCarta(6-2, 0);*/
+        ctrl.setBoard(b);
+        ctrl.getMazo().meteCarta(6-2, 2);ctrl.getMazo().meteCarta(7-2, 1);
+        ctrl.getMazo().meteCarta(13-2, 1);ctrl.getMazo().meteCarta(12-2, 0);
+        ctrl.getMazo().meteCarta(14-2, 0);ctrl.getMazo().meteCarta(13-2, 0);
+        ctrl.getMazo().meteCarta(12-2, 3);ctrl.getMazo().meteCarta(12-2, 2);
+        //ctrl.calculaEquity();
         
     }
 

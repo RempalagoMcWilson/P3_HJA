@@ -1,26 +1,31 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package org.ucm.poker3.view.mainFrame.cartas;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import org.ucm.poker3.control.Controller;
 import org.ucm.poker3.model.cartas.Jugador;
+import org.ucm.poker3.model.observer.Observer;
 
-public class PanelCartasJugador extends JPanel {
+public class PanelCartasJugador extends JPanel implements Observer{
 
     private Jugador jugador;
     private JLabel fondo;
     private JLabel carta1;
     private JLabel carta2;
+    private labelPorcentajes lP;
+    private Controller ctrl;
 
-    public PanelCartasJugador(Jugador jugador) {
+    public PanelCartasJugador(Jugador jugador,Controller ctrl) {
+        this.ctrl = ctrl;
+        ctrl.addObserver(this);
+        ctrl.addJugador(jugador);
         this.jugador = jugador;
         iniGUI();
     }
@@ -60,30 +65,63 @@ public class PanelCartasJugador extends JPanel {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        lP = new labelPorcentajes();
+        add(lP);
 
     }
 
     private void setBoundsJugador() {
         switch (jugador.getNumJugador()) {
             case 1:
-                setBounds(60, 100, 100, 120);
+                setBounds(60, 100, 100, 140);
                 break;
             case 2:
-                setBounds(60, 400, 100, 120);
+                setBounds(60, 400, 100, 140);
                 break;
             case 3:
-                setBounds(350, 430, 100, 120);
+                setBounds(350, 400, 100, 140);
                 break;
             case 4:                              
-                setBounds(600, 400, 100, 120);
+                setBounds(600, 400, 100, 140);
                 break;
             case 5:
-                setBounds(600, 100, 100, 120);
+                setBounds(600, 100, 100, 140);
                 break;
             case 6:
-                setBounds(350, 50, 100, 120);
+                setBounds(350, 50, 100, 140);
                 break;
         }
+    }
+
+    @Override
+    public void actualizaEquity(ArrayList<Double> porcentajes) {
+        Double aux = porcentajes.get(jugador.getNumJugador()-1);
+        lP.setText(aux + "%");
+    }
+
+    @Override
+    public void hacerFold(int numJug) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void meterCartaJug(int numJug, String cartas) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void meterCartaJugAleatoria(int numJug) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void meterBoard(String board) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void meterBoardAleatorio(int numCartas) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
