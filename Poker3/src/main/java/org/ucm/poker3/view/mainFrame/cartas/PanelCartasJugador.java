@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import org.ucm.poker3.control.Controller;
 import org.ucm.poker3.model.cartas.Board;
 import org.ucm.poker3.model.cartas.Jugador;
+import org.ucm.poker3.model.cartas.JugadorOmaha;
 import org.ucm.poker3.model.observer.Observer;
 
 public class PanelCartasJugador extends JPanel implements Observer{
@@ -111,7 +112,7 @@ public class PanelCartasJugador extends JPanel implements Observer{
     }
 
     @Override
-    public void meterCartaJugOmaha(Jugador j) {
+    public void meterCartaJugOmaha(JugadorOmaha j) {
         
     }
 

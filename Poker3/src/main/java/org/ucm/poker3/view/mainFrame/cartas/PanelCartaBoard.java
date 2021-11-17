@@ -18,10 +18,10 @@ public class PanelCartaBoard extends JPanel {
     public PanelCartaBoard(Carta carta, int pos) {
         this.carta = carta;
         this.pos = pos;
-        iniGUI();
+        iniGUIb();
     }
 
-    public void iniGUI() {
+    public void iniGUIb() {
         setLayout(null);
         setBoundsCarta();
         ImageIcon img = null;
@@ -41,19 +41,19 @@ public class PanelCartaBoard extends JPanel {
     private void setBoundsCarta() {
         switch (pos) {
             case 1:
-                setBounds(250, 250, 60, 80);
+                setBounds(210, 260, 60, 80);
                 break;
             case 2:
-                setBounds(330, 250, 60, 80);
+                setBounds(290, 260, 60, 80);
                 break;
             case 3:
-                setBounds(410, 250, 60, 80);
+                setBounds(370, 260, 60, 80);
                 break;
             case 4:
-                setBounds(490, 250, 60, 80);
+                setBounds(450, 260, 60, 80);
                 break;
             case 5:
-                setBounds(570, 250, 60, 80);
+                setBounds(530, 260, 60, 80);
                 break;
 
         }

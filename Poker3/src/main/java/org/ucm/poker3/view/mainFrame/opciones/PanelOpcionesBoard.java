@@ -3,6 +3,7 @@ package org.ucm.poker3.view.mainFrame.opciones;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -16,6 +17,7 @@ import javax.swing.border.TitledBorder;
 import org.ucm.poker3.control.Controller;
 import org.ucm.poker3.model.cartas.Board;
 import org.ucm.poker3.model.cartas.Carta;
+import org.ucm.poker3.utils.Util;
 
 public class PanelOpcionesBoard extends JPanel {
 
@@ -81,10 +83,32 @@ public class PanelOpcionesBoard extends JPanel {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 int nB = (int) numJugador.getValue();
+                Board b;
+                String error = "nada";
+                boolean bien = false;
+                Random rand = new Random();
                 if (nB != 0 && nB != 3 && nB != 4 && nB != 5) {
                     JOptionPane.showMessageDialog(null, "El numero de cartas en el board solo puede ser 0, 3, 4 o 5", "Error message", JOptionPane.ERROR_MESSAGE);
                 }
-
+                else{
+                    while (!bien) {
+                    b = new Board();
+                    for (int i = 0; i < nB; i++) {
+                        int c1 = rand.nextInt(13) + 2;
+                        char p1 = Util.numAPalo(rand.nextInt(4));
+                        b.addCarta(new Carta(c1, p1, false));
+                    }
+                    try {
+                        ctrl.existeBoard(b);
+                    } catch (Exception e) {
+                        error = e.getMessage();
+                    }
+                    if (error.equals("nada")) {
+                        bien = true;
+                        ctrl.setBoard(b);
+                    }
+                }
+                }
             }
         });
     }
@@ -93,22 +117,24 @@ public class PanelOpcionesBoard extends JPanel {
         okB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                String cartas = cartasTF.getText(), error = "";
+                String cartas = cartasTF.getText(), error = "nada";
+
                 Board b = new Board();
                 if (cartas.length() != 6 && cartas.length() != 8 && cartas.length() != 10) {
+
                     error = "Mete 3, 4 o 5 cartas (AhTc2h)";
                 }
                 try {
-                    for (int i = 0; i < cartas.length(); i++) {
-                        int c1 = Character.getNumericValue(cartas.charAt(0));
-                        char p1 = cartas.charAt(1);
+                    for (int i = 0; i < cartas.length(); i += 2) {
+                        int c1 = Util.parseaNumCarta(cartas.charAt(i));
+                        char p1 = cartas.charAt(i + 1);
                         b.addCarta(new Carta(c1, p1, false));
                     }
                     ctrl.existeBoard(b);
                 } catch (Exception e) {
                     error = e.getMessage();
                 }
-                if (!"".equals(error)) {
+                if (error.equals("nada")) {
                     ctrl.setBoard(b);
                 } else {
                     JOptionPane.showMessageDialog(null, error, "Error message", JOptionPane.ERROR_MESSAGE);

@@ -17,15 +17,19 @@ import org.ucm.poker3.main.Main;
 import org.ucm.poker3.model.cartas.Board;
 import org.ucm.poker3.model.cartas.Carta;
 import org.ucm.poker3.model.cartas.Jugador;
+import org.ucm.poker3.model.cartas.JugadorOmaha;
 import org.ucm.poker3.model.observer.Observer;
+import org.ucm.poker3.view.mainFrame.cartas.PanelCartaBoard;
 import org.ucm.poker3.view.mainFrame.cartas.PanelCartasJugador;
 
 public class MainFrame extends javax.swing.JFrame implements Observer{
     JLabel labelFoto;
     MainPanel mP;
     Controller ctrl;
+    ArrayList<PanelCartaBoard> listaCB;
     public MainFrame(Controller ctrl) {
         this.ctrl = ctrl;
+        listaCB = new ArrayList();
         ctrl.addObserver(this);
         //initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -91,13 +95,26 @@ public class MainFrame extends javax.swing.JFrame implements Observer{
     }
 
     @Override
-    public void meterCartaJugOmaha(Jugador j) {
+    public void meterCartaJugOmaha(JugadorOmaha j) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void meterBoard(Board board) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int cont = 1;
+        getContentPane().removeAll();
+        for(Carta c:board.getListaCartas()){
+            PanelCartaBoard aux = new PanelCartaBoard(c,cont);
+            listaCB.add(aux);
+            getContentPane().add(aux);
+            cont++;
+        }
+        
+        //meter los jugadores otra vez
+        getContentPane().add(mP);
+        getContentPane().add(labelFoto);
+        getContentPane().revalidate();
+        getContentPane().repaint();
     }
 
     @Override

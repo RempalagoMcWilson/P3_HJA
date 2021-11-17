@@ -34,8 +34,8 @@ public class Controller {
 
     public void addJugador(Jugador j) {
         jugadores.add(j);
-        mazo.meteCarta(j.getCarta1().getNum(), Util.paloANum(j.getCarta1().getPalo()));
-        mazo.meteCarta(j.getCarta2().getNum(), Util.paloANum(j.getCarta2().getPalo()));
+        mazo.meteCarta(j.getCarta1().getNum()-2, Util.paloANum(j.getCarta1().getPalo()));
+        mazo.meteCarta(j.getCarta2().getNum()-2, Util.paloANum(j.getCarta2().getPalo()));
         for (Observer o : obs) {
             o.meterCartaJug(j);
         }
@@ -43,22 +43,35 @@ public class Controller {
 
     public void addJugadorOmaha(JugadorOmaha j) {
         jugadoresOmaha.add(j);
-        mazo.meteCarta(j.getCarta1().getNum(), Util.paloANum(j.getCarta1().getPalo()));
-        mazo.meteCarta(j.getCarta2().getNum(), Util.paloANum(j.getCarta2().getPalo()));
-        mazo.meteCarta(j.getCarta3().getNum(), Util.paloANum(j.getCarta3().getPalo()));
-        mazo.meteCarta(j.getCarta4().getNum(), Util.paloANum(j.getCarta4().getPalo()));
-
+        mazo.meteCarta(j.getCarta1().getNum()-2, Util.paloANum(j.getCarta1().getPalo()));
+        mazo.meteCarta(j.getCarta2().getNum()-2, Util.paloANum(j.getCarta2().getPalo()));
+        mazo.meteCarta(j.getCarta3().getNum()-2, Util.paloANum(j.getCarta3().getPalo()));
+        mazo.meteCarta(j.getCarta4().getNum()-2, Util.paloANum(j.getCarta4().getPalo()));
+        for (Observer o : obs) {           
+            o.meterCartaJugOmaha(j);
+        }
     }
 
     public void setBoard(Board b) {
         if(!board.getListaCartas().isEmpty()){
-            //borrar as cartas de la matriz
-            //cambiar board
-            //meter cartas en matriz
+            for(Carta c : board.getListaCartas()){
+                mazo.quitaCarta(c.getNum()-2, Util.paloANum(c.getPalo()));
+            }
+            board = new Board();board = b;
+            for(Carta c : board.getListaCartas()){
+                mazo.meteCarta(c.getNum()-2, Util.paloANum(c.getPalo()));
+            }
         }
         else{
-            board = b;
+            board = new Board();board = b;
+            for(Carta c : board.getListaCartas()){
+                mazo.meteCarta(c.getNum()-2, Util.paloANum(c.getPalo()));
+            }
         }
+        for (Observer o : obs) {
+            o.meterBoard(board);
+        }
+        
     }
 
     public MazoCartas getMazo() {
