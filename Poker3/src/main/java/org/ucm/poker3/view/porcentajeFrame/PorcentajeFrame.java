@@ -1,7 +1,7 @@
-
 package org.ucm.poker3.view.porcentajeFrame;
 
 import java.awt.Color;
+import java.awt.EventQueue;
 
 public class PorcentajeFrame extends javax.swing.JFrame {
 
@@ -13,6 +13,8 @@ public class PorcentajeFrame extends javax.swing.JFrame {
         jProgressBar1.setStringPainted(true);
         jProgressBar1.setValue(0);
         jProgressBar1.setBackground(Color.green);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     /**
@@ -48,8 +50,16 @@ public class PorcentajeFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void actualizaPorcentaje(int p){
-        jProgressBar1.setValue(p);
+    public void actualizaPorcentaje(int p) {
+        EventQueue.invokeLater(new Runnable() {
+            String[] info;
+            public void run() {
+                jProgressBar1.setValue(p);
+                revalidate();
+                repaint();
+
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

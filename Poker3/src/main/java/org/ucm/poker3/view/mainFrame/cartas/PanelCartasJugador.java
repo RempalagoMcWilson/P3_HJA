@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import org.ucm.poker3.control.Controller;
+import org.ucm.poker3.model.cartas.Board;
 import org.ucm.poker3.model.cartas.Jugador;
 import org.ucm.poker3.model.observer.Observer;
 
@@ -101,27 +102,28 @@ public class PanelCartasJugador extends JPanel implements Observer{
 
     @Override
     public void hacerFold(int numJug) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //hacer
     }
 
     @Override
-    public void meterCartaJug(int numJug, String cartas) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void meterCartaJug(Jugador j) {
+        
     }
 
     @Override
-    public void meterCartaJugAleatoria(int numJug) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void meterCartaJugOmaha(Jugador j) {
+        
     }
 
     @Override
-    public void meterBoard(String board) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void meterBoard(Board board) {
+        
     }
 
     @Override
-    public void meterBoardAleatorio(int numCartas) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void reset() {
+        
     }
+
 
 }

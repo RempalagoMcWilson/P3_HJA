@@ -11,11 +11,11 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import org.ucm.poker3.control.Controller;
 
-public class PanelOpcionesCalcular extends JPanel{
-    private JButton calcularB;
+public class PanelOpcionesReset extends JPanel{
+    private JButton resetB;
     private Controller ctrl;
     
-    public PanelOpcionesCalcular(Controller ctrl){
+    public PanelOpcionesReset(Controller ctrl){
         this.ctrl = ctrl;
         iniGUI();
     }
@@ -23,23 +23,23 @@ public class PanelOpcionesCalcular extends JPanel{
     public void iniGUI(){
         setLayout(null);
         setBackground(new Color(76,111,145));
-        setBounds(0,0,330,70);
+        setBounds(0,440,330,70);//sumar 70 a modo de juego
 
-        calcularB = new JButton();
-        calcularB.setBounds(10, 20, 300, 30);
-        calcularB.setText("CALCULAR EQUITY");
-        calcularB.setBackground(new Color(140,190,240));
-        calcularBListener();
+        resetB = new JButton();
+        resetB.setBounds(10, 20, 300, 30);
+        resetB.setText("RESET");
+        resetB.setBackground(new Color(140,190,240));
+        resetBListener();
         Border b = BorderFactory.createLineBorder(Color.black, 2);
-        setBorder(BorderFactory.createTitledBorder(b, "Calcular EQUITY ", TitledBorder.LEFT, TitledBorder.TOP));
-        add(calcularB);
+        setBorder(BorderFactory.createTitledBorder(b, "Hacer RESET ", TitledBorder.LEFT, TitledBorder.TOP));
+        add(resetB);
     }
     
-    private void calcularBListener() {
-        calcularB.addActionListener(new ActionListener() {
+    private void resetBListener() {
+        resetB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                ctrl.calculaEquity();
+                ctrl.reset();
             }
         });
     }

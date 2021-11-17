@@ -1,12 +1,14 @@
 package org.ucm.poker3.model.observer;
 
 import java.util.ArrayList;
+import org.ucm.poker3.model.cartas.Board;
+import org.ucm.poker3.model.cartas.Jugador;
 
 public interface Observer {
     public void actualizaEquity(ArrayList<Double> porcentajes);
     public void hacerFold(int numJug);
-    public void meterCartaJug(int numJug, String cartas);
-    public void meterCartaJugAleatoria(int numJug);
-    public void meterBoard(String board);
-    public void meterBoardAleatorio(int numCartas);
+    public void meterCartaJug(Jugador j);
+    public void meterCartaJugOmaha(Jugador j);
+    public void meterBoard(Board board);
+    public void reset();
 }

@@ -26,8 +26,8 @@ public class Util {
         }
         return ca;
     }
-    
-    public static int paloANum(char palo){
+
+    public static int paloANum(char palo) {
         switch (palo) {
             case 's':
                 return 0;
@@ -40,8 +40,8 @@ public class Util {
         }
         return -1;
     }
-    
-    public static char numAPalo(int palo){
+
+    public static char numAPalo(int palo) {
         switch (palo) {
             case 0:
                 return 's';
@@ -54,20 +54,40 @@ public class Util {
         }
         return 'f';
     }
-    
+
     public static String cartaAString(int c) {
         Integer a = c;
         switch (c) {
             case 14:
-                return "ace";               
+                return "ace";
             case 11:
                 return "jack";
             case 12:
                 return "queen";
             case 13:
-               return "king";
+                return "king";
             default:
                 return a.toString();
         }
+    }
+
+    public static long nCr(int n, int r) {
+        long fN = fact(n);
+        var sol1 =  1/ fact(r);
+        var sol2 = fN / fact(n - r);
+        
+        
+        System.out.println(fN);
+        System.out.println(sol1);
+        System.out.println(sol2);
+        return sol1 * sol2;
+    }
+
+    private static long fact(int n) {
+        long res = 1;
+        for (int i = 2; i <= n; i++) {
+            res = res * i;
+        }
+        return res;
     }
 }

@@ -11,11 +11,12 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import org.ucm.poker3.control.Controller;
 
-public class PanelOpcionesCalcular extends JPanel{
-    private JButton calcularB;
+
+public class PanelOpcionesModoJuego extends JPanel{
+    private JButton modoB;
     private Controller ctrl;
     
-    public PanelOpcionesCalcular(Controller ctrl){
+    public PanelOpcionesModoJuego(Controller ctrl){
         this.ctrl = ctrl;
         iniGUI();
     }
@@ -23,23 +24,23 @@ public class PanelOpcionesCalcular extends JPanel{
     public void iniGUI(){
         setLayout(null);
         setBackground(new Color(76,111,145));
-        setBounds(0,0,330,70);
+        setBounds(0,370,330,70);//sumar 70 a modo de juego
 
-        calcularB = new JButton();
-        calcularB.setBounds(10, 20, 300, 30);
-        calcularB.setText("CALCULAR EQUITY");
-        calcularB.setBackground(new Color(140,190,240));
-        calcularBListener();
+        modoB = new JButton();
+        modoB.setBounds(10, 20, 300, 30);
+        modoB.setText("CAMBIAR A OMAHA");
+        modoB.setBackground(new Color(140,190,240));
+        modoBListener();
         Border b = BorderFactory.createLineBorder(Color.black, 2);
-        setBorder(BorderFactory.createTitledBorder(b, "Calcular EQUITY ", TitledBorder.LEFT, TitledBorder.TOP));
-        add(calcularB);
+        setBorder(BorderFactory.createTitledBorder(b, "Cambiar MODO de JUEGO ", TitledBorder.LEFT, TitledBorder.TOP));
+        add(modoB);
     }
     
-    private void calcularBListener() {
-        calcularB.addActionListener(new ActionListener() {
+    private void modoBListener() {
+        modoB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                ctrl.calculaEquity();
+                ctrl.reset();
             }
         });
     }
