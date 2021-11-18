@@ -102,9 +102,8 @@ public class PanelCartasJugador extends JPanel implements Observer{
 
     @Override
     public void hacerFold(int numJug) {
-        //hacer
-        
-        lP.setText("Fold");
+        if(jugador.getNumJugador()== numJug)
+            lP.setText("Fold");
     }
 
     @Override

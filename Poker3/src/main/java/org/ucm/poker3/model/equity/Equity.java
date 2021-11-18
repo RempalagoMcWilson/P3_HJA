@@ -25,7 +25,7 @@ public class Equity {
     private Boolean[][] mazoE;
     private HashSet<Board> calculado;
     private PorcentajeFrame pF;
-    private long combTotales;
+    private int combTotales;
 
     public Equity() {
 
@@ -36,8 +36,7 @@ public class Equity {
     }
 
     public void calculateEquity(ArrayList<Jugador> jugadores, MazoCartas mazo, Board board, PorcentajeFrame pF) {
-        combTotales = Util.nCr(52 - mazo.getCont(), 5-board.getNumCartas());
-        System.out.println(combTotales);
+        combTotales = Util.getNumJug(jugadores.size(), board.getNumCartas());
         this.pF = pF;
         this.jugadores = jugadores;
         totales = 0;
@@ -104,37 +103,21 @@ public class Equity {
         }
         p.println("------");*/
         for (Jugador j : jugadores) {
-            Mano aux = new Mano();
-            mapa.put(aux.calcula(j, board), j.getNumJugador() - 1);
+            if(j.getActivo()){
+                Mano aux = new Mano();
+                mapa.put(aux.calcula(j, board), j.getNumJugador() - 1);
+            }
+            
         }
-        Map.Entry<Solucion, Integer> entry = mapa.firstEntry();
-        //System.out.println(entry.getKey()+" "+entry.getValue());
-        //System.out.println("------");
+        Map.Entry<Solucion, Integer> entry = mapa.firstEntry();      
         int auxI = numGanados.get(entry.getValue());
         auxI++;
-        /*System.out.println(auxI + " " + entry.getValue());
-        System.out.println("------");*/
         numGanados.set(entry.getValue(), auxI);
         totales++;
-/*
-        if (totales == 200) {
-            for (Carta c : board.getListaCartas()) {
-                System.out.println(c.getNum() + " " + c.getPalo());
-            }
-            System.out.println("------");
-            mapa.entrySet().forEach(r -> {
-                Solucion aux = r.getKey();
-                Integer numJ = r.getValue();
-                
-                System.out.println(" J" + numJ + " " + aux.toString());
-                System.out.println(aux.getTipo());
-                System.out.println("-----------" );
-            });
-        }*/
         double p = (totales / combTotales) * 100.00;//376740  98280
 
         //new DecimalFormat("#.##").format(p);
-        if ((p-(int)p)==0.0) {
+        if ((p-(int)p)<=0.001) {
             pF.actualizaPorcentaje((int) p);
         //System.out.println(p);//totales + " " +*
         }

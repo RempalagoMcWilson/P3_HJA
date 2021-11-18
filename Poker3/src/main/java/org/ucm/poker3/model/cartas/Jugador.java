@@ -20,6 +20,9 @@ public class Jugador {
     public void setActivo(boolean activo){
         this.activo = activo;
     }
+    public boolean getActivo(){
+        return activo;
+    }
 
     public Carta getCarta1() {
         return carta1;

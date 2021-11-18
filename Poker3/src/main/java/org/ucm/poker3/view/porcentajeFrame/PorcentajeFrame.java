@@ -12,7 +12,9 @@ public class PorcentajeFrame extends javax.swing.JFrame {
         initComponents();
         jProgressBar1.setStringPainted(true);
         jProgressBar1.setValue(0);
-        jProgressBar1.setBackground(Color.green);
+        //jProgressBar1.setBackground(Color.green);
+        jProgressBar1.setStringPainted(true);
+        jProgressBar1.setForeground(Color.green);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
     }

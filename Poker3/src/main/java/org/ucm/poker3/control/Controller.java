@@ -162,24 +162,24 @@ public class Controller {
             if (j1.getNumJugador() == j.getNumJugador()) {
                 throw new Exception("Jugador ya en mesa");
             }
-            if (j1.getCarta1() == j.getCarta1()) {
+            if (j1.getCarta1().equals(j.getCarta1())) {
                 throw new Exception("Carta existente " + j1.getCarta1() + " del jugador " + j1.getNumJugador());
             }
-            if (j1.getCarta1() == j.getCarta2()) {
+            if (j1.getCarta1().equals(j.getCarta2())) {
                 throw new Exception("Carta existente " + j1.getCarta1() + " del jugador " + j1.getNumJugador());
             }
-            if (j1.getCarta2() == j.getCarta1()) {
+            if (j1.getCarta2().equals(j.getCarta1())) {
                 throw new Exception("Carta existente " + j1.getCarta2() + " del jugador " + j1.getNumJugador());
             }
-            if (j1.getCarta2() == j.getCarta2()) {
+            if (j1.getCarta2().equals(j.getCarta2())) {
                 throw new Exception("Carta existente " + j1.getCarta2() + " del jugador " + j1.getNumJugador());
             }
         }
         for (Carta c : board.getListaCartas()) {
-            if (c == j.getCarta1()) {
+            if (c.equals(j.getCarta1())) {
                 throw new Exception("Carta existente " + c + " en el board");
             }
-            if (c == j.getCarta2()) {
+            if (c.equals(j.getCarta2())) {
                 throw new Exception("Carta existente " + c + " en el board");
             }
 
@@ -192,83 +192,104 @@ public class Controller {
                 throw new Exception("Jugador ya en mesa");
             }
 
-            if (j1.getCarta1() == j.getCarta1()) {
+            if (j1.getCarta1().equals(j.getCarta1())) {
                 throw new Exception("Carta existente " + j1.getCarta1() + " del jugador " + j1.getNumJugador());
             }
-            if (j1.getCarta1() == j.getCarta2()) {
+            if (j1.getCarta1().equals(j.getCarta2())) {
                 throw new Exception("Carta existente " + j1.getCarta1() + " del jugador " + j1.getNumJugador());
             }
-            if (j1.getCarta1() == j.getCarta3()) {
+            if (j1.getCarta1().equals(j.getCarta3())) {
                 throw new Exception("Carta existente " + j1.getCarta1() + " del jugador " + j1.getNumJugador());
             }
-            if (j1.getCarta1() == j.getCarta4()) {
+            if (j1.getCarta1().equals(j.getCarta4())) {
                 throw new Exception("Carta existente " + j1.getCarta1() + " del jugador " + j1.getNumJugador());
             }
 
-            if (j1.getCarta2() == j.getCarta1()) {
+            if (j1.getCarta2().equals(j.getCarta1())) {
                 throw new Exception("Carta existente " + j1.getCarta2() + " del jugador " + j1.getNumJugador());
             }
-            if (j1.getCarta2() == j.getCarta2()) {
+            if (j1.getCarta2().equals(j.getCarta2())) {
                 throw new Exception("Carta existente " + j1.getCarta2() + " del jugador " + j1.getNumJugador());
             }
-            if (j1.getCarta2() == j.getCarta3()) {
+            if (j1.getCarta2().equals(j.getCarta3())) {
                 throw new Exception("Carta existente " + j1.getCarta2() + " del jugador " + j1.getNumJugador());
             }
-            if (j1.getCarta2() == j.getCarta4()) {
+            if (j1.getCarta2().equals(j.getCarta4())) {
                 throw new Exception("Carta existente " + j1.getCarta2() + " del jugador " + j1.getNumJugador());
             }
 
-            if (j1.getCarta3() == j.getCarta1()) {
+            if (j1.getCarta3().equals(j.getCarta1())) {
                 throw new Exception("Carta existente " + j1.getCarta3() + " del jugador " + j1.getNumJugador());
             }
-            if (j1.getCarta3() == j.getCarta2()) {
+            if (j1.getCarta3().equals(j.getCarta2())) {
                 throw new Exception("Carta existente " + j1.getCarta3() + " del jugador " + j1.getNumJugador());
             }
-            if (j1.getCarta3() == j.getCarta3()) {
+            if (j1.getCarta3().equals(j.getCarta3())) {
                 throw new Exception("Carta existente " + j1.getCarta3() + " del jugador " + j1.getNumJugador());
             }
-            if (j1.getCarta3() == j.getCarta4()) {
+            if (j1.getCarta3().equals(j.getCarta4())) {
                 throw new Exception("Carta existente " + j1.getCarta3() + " del jugador " + j1.getNumJugador());
             }
 
-            if (j1.getCarta4() == j.getCarta1()) {
+            if (j1.getCarta4().equals(j.getCarta1())) {
                 throw new Exception("Carta existente " + j1.getCarta4() + " del jugador " + j1.getNumJugador());
             }
-            if (j1.getCarta4() == j.getCarta2()) {
+            if (j1.getCarta4().equals(j.getCarta2())) {
                 throw new Exception("Carta existente " + j1.getCarta4() + " del jugador " + j1.getNumJugador());
             }
-            if (j1.getCarta4() == j.getCarta3()) {
+            if (j1.getCarta4().equals(j.getCarta3())) {
                 throw new Exception("Carta existente " + j1.getCarta4() + " del jugador " + j1.getNumJugador());
             }
-            if (j1.getCarta4() == j.getCarta4()) {
+            if (j1.getCarta4().equals(j.getCarta4())) {
                 throw new Exception("Carta existente " + j1.getCarta4() + " del jugador " + j1.getNumJugador());
             }
         }
         for (Carta c : board.getListaCartas()) {
-            if (c == j.getCarta1()) {
+            if (c.equals(j.getCarta1())) {
                 throw new Exception("Carta existente " + c + " en el board");
             }
-            if (c == j.getCarta2()) {
+            if (c.equals(j.getCarta2())) {
                 throw new Exception("Carta existente " + c + " en el board");
             }
-            if (c == j.getCarta3()) {
+            if (c.equals(j.getCarta3())) {
                 throw new Exception("Carta existente " + c + " en el board");
             }
-            if (c == j.getCarta4()) {
+            if (c.equals(j.getCarta4())) {
                 throw new Exception("Carta existente " + c + " en el board");
             }
         }
     }
 
     public void cambiaModo() {
-        if(modoNormal)
+        if (modoNormal) {
             modoNormal = false;
-        else
+        } else {
             modoNormal = true;
+        }
         reset();
     }
 
     public boolean getModo() {
         return modoNormal;
+    }
+
+    public void fold(int numJug) {
+        if (modoNormal) {
+            for (Jugador j : jugadores) {
+                if (j.getNumJugador() == numJug) {
+                    j.setActivo(false);
+                }
+            }
+        } else {
+            for (JugadorOmaha j : jugadoresOmaha) {
+                if (j.getNumJugador() == numJug) {
+                    j.setActivo(false);
+                }
+            }
+        }
+        for(Observer o: obs){
+            o.hacerFold(numJug);
+        }
+
     }
 }

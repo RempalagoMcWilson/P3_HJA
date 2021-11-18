@@ -91,7 +91,7 @@ public class PanelOpcionesJugador extends JPanel {
         foldB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                System.out.println("fold de jugador " + numJugador.getValue());
+                ctrl.fold((int)numJugador.getValue());
             }
         });
     }
