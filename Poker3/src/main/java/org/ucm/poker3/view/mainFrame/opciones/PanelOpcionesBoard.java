@@ -3,6 +3,8 @@ package org.ucm.poker3.view.mainFrame.opciones;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -46,7 +48,7 @@ public class PanelOpcionesBoard extends JPanel {
         infoSpinner.setText("Seleccionar Nº de cartas en el board:");
         infoSpinner.setBounds(10, 20, 230, 30);
 
-        SpinnerNumberModel modeloSpinner = new SpinnerNumberModel(1, 1, 5, 1);
+        SpinnerNumberModel modeloSpinner = new SpinnerNumberModel(3, 3, 5, 1);
         numJugador = new JSpinner(modeloSpinner);
         numJugador.setBounds(240, 20, 40, 30);
         numJugador.setToolTipText("Seleccionar Nº de cartas en el board:");
@@ -87,27 +89,28 @@ public class PanelOpcionesBoard extends JPanel {
                 String error = "nada";
                 boolean bien = false;
                 Random rand = new Random();
-                if (nB != 0 && nB != 3 && nB != 4 && nB != 5) {
+                if (nB != 3 && nB != 4 && nB != 5) {
                     JOptionPane.showMessageDialog(null, "El numero de cartas en el board solo puede ser 0, 3, 4 o 5", "Error message", JOptionPane.ERROR_MESSAGE);
-                }
-                else{
+                } else {
                     while (!bien) {
-                    b = new Board();
-                    for (int i = 0; i < nB; i++) {
-                        int c1 = rand.nextInt(13) + 2;
-                        char p1 = Util.numAPalo(rand.nextInt(4));
-                        b.addCarta(new Carta(c1, p1, false));
+                        b = new Board();
+                        error = "nada";
+                        for (int i = 0; i < nB; i++) {
+                            int c1 = rand.nextInt(13) + 2;
+                            char p1 = Util.numAPalo(rand.nextInt(4));
+                            b.addCarta(new Carta(c1, p1, false));
+                        }
+                        try {
+                            ctrl.existeBoard(b);
+                            sonIguales(b);
+                        } catch (Exception e) {
+                            error = e.getMessage();
+                        }
+                        if (error.equals("nada")) {
+                            bien = true;
+                            ctrl.setBoard(b);
+                        }
                     }
-                    try {
-                        ctrl.existeBoard(b);
-                    } catch (Exception e) {
-                        error = e.getMessage();
-                    }
-                    if (error.equals("nada")) {
-                        bien = true;
-                        ctrl.setBoard(b);
-                    }
-                }
                 }
             }
         });
@@ -141,5 +144,44 @@ public class PanelOpcionesBoard extends JPanel {
                 }
             }
         });
+    }
+
+    private void sonIguales(Board b) throws Exception {
+        List<Carta> cartas = b.getListaCartas();
+        if (cartas.get(0).equals(cartas.get(1))) {
+            throw new Exception("mal");
+        }
+        if (cartas.get(0).equals(cartas.get(2))) {
+            throw new Exception("mal");
+        }
+        if (cartas.get(1).equals(cartas.get(2))) {
+            throw new Exception("mal");
+        }
+
+        if (cartas.size() >= 4) {
+            if (cartas.get(0).equals(cartas.get(3))) {
+                throw new Exception("mal");
+            }
+            if (cartas.get(1).equals(cartas.get(3))) {
+                throw new Exception("mal");
+            }
+            if (cartas.get(2).equals(cartas.get(3))) {
+                throw new Exception("mal");
+            }
+        }
+        if (cartas.size() >= 5) {
+            if (cartas.get(0).equals(cartas.get(4))) {
+                throw new Exception("mal");
+            }
+            if (cartas.get(1).equals(cartas.get(4))) {
+                throw new Exception("mal");
+            }
+            if (cartas.get(2).equals(cartas.get(4))) {
+                throw new Exception("mal");
+            }
+            if (cartas.get(3).equals(cartas.get(4))) {
+                throw new Exception("mal");
+            }
+        }
     }
 }

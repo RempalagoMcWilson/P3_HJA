@@ -16,6 +16,7 @@ public class Controller {
 
     private MazoCartas mazo;
     private List<Observer> obs;
+    private List<Observer> futurosObs;
     private Equity e;
     private ArrayList<Jugador> jugadores;
     private ArrayList<JugadorOmaha> jugadoresOmaha;
@@ -25,6 +26,7 @@ public class Controller {
     public Controller() {
         mazo = new MazoCartas();
         obs = new ArrayList<Observer>();
+        futurosObs = new ArrayList<Observer>();
         e = new Equity();
         board = new Board();
         jugadores = new ArrayList();
@@ -34,44 +36,49 @@ public class Controller {
 
     public void addJugador(Jugador j) {
         jugadores.add(j);
-        mazo.meteCarta(j.getCarta1().getNum()-2, Util.paloANum(j.getCarta1().getPalo()));
-        mazo.meteCarta(j.getCarta2().getNum()-2, Util.paloANum(j.getCarta2().getPalo()));
+        mazo.meteCarta(j.getCarta1().getNum() - 2, Util.paloANum(j.getCarta1().getPalo()));
+        mazo.meteCarta(j.getCarta2().getNum() - 2, Util.paloANum(j.getCarta2().getPalo()));
         for (Observer o : obs) {
             o.meterCartaJug(j);
         }
+        for (Observer o : futurosObs) {
+            addObserver(o);
+        }
+        futurosObs = new ArrayList<Observer>();
     }
 
     public void addJugadorOmaha(JugadorOmaha j) {
         jugadoresOmaha.add(j);
-        mazo.meteCarta(j.getCarta1().getNum()-2, Util.paloANum(j.getCarta1().getPalo()));
-        mazo.meteCarta(j.getCarta2().getNum()-2, Util.paloANum(j.getCarta2().getPalo()));
-        mazo.meteCarta(j.getCarta3().getNum()-2, Util.paloANum(j.getCarta3().getPalo()));
-        mazo.meteCarta(j.getCarta4().getNum()-2, Util.paloANum(j.getCarta4().getPalo()));
-        for (Observer o : obs) {           
+        mazo.meteCarta(j.getCarta1().getNum() - 2, Util.paloANum(j.getCarta1().getPalo()));
+        mazo.meteCarta(j.getCarta2().getNum() - 2, Util.paloANum(j.getCarta2().getPalo()));
+        mazo.meteCarta(j.getCarta3().getNum() - 2, Util.paloANum(j.getCarta3().getPalo()));
+        mazo.meteCarta(j.getCarta4().getNum() - 2, Util.paloANum(j.getCarta4().getPalo()));
+        for (Observer o : obs) {
             o.meterCartaJugOmaha(j);
         }
     }
 
     public void setBoard(Board b) {
-        if(!board.getListaCartas().isEmpty()){
-            for(Carta c : board.getListaCartas()){
-                mazo.quitaCarta(c.getNum()-2, Util.paloANum(c.getPalo()));
+        if (!board.getListaCartas().isEmpty()) {
+            for (Carta c : board.getListaCartas()) {
+                mazo.quitaCarta(c.getNum() - 2, Util.paloANum(c.getPalo()));
             }
-            board = new Board();board = b;
-            for(Carta c : board.getListaCartas()){
-                mazo.meteCarta(c.getNum()-2, Util.paloANum(c.getPalo()));
+            board = new Board();
+            board = b;
+            for (Carta c : board.getListaCartas()) {
+                mazo.meteCarta(c.getNum() - 2, Util.paloANum(c.getPalo()));
             }
-        }
-        else{
-            board = new Board();board = b;
-            for(Carta c : board.getListaCartas()){
-                mazo.meteCarta(c.getNum()-2, Util.paloANum(c.getPalo()));
+        } else {
+            board = new Board();
+            board = b;
+            for (Carta c : board.getListaCartas()) {
+                mazo.meteCarta(c.getNum() - 2, Util.paloANum(c.getPalo()));
             }
         }
         for (Observer o : obs) {
             o.meterBoard(board);
         }
-        
+
     }
 
     public MazoCartas getMazo() {
@@ -80,6 +87,10 @@ public class Controller {
 
     public void addObserver(Observer o) {
         obs.add(o);
+    }
+
+    public void addFuturoObserver(Observer o) {
+        futurosObs.add(o);
     }
 
     public void calculaEquity() {
@@ -101,11 +112,19 @@ public class Controller {
     }
 
     public void reset() {
-
+        mazo = new MazoCartas();
+        futurosObs = new ArrayList<Observer>();
+        board = new Board();
+        jugadores = new ArrayList();
+        jugadoresOmaha = new ArrayList();
+        //modoNormal = true;
+        for (Observer o : obs) {
+            o.reset();
+        }
+        obs = futurosObs;
+        futurosObs = new ArrayList<Observer>();
     }
 
-    
-    
     public void existeBoard(Board b) throws Exception {
         if (modoNormal) {
             for (Carta c : b.getListaCartas()) {
@@ -118,8 +137,7 @@ public class Controller {
                     }
                 }
             }
-        }
-        else{
+        } else {
             for (Carta c : b.getListaCartas()) {
                 for (JugadorOmaha j1 : jugadoresOmaha) {
                     if (j1.getCarta1() == c) {
@@ -243,7 +261,11 @@ public class Controller {
     }
 
     public void cambiaModo() {
-        modoNormal = !modoNormal;
+        if(modoNormal)
+            modoNormal = false;
+        else
+            modoNormal = true;
+        reset();
     }
 
     public boolean getModo() {

@@ -29,7 +29,7 @@ public class Equity {
 
     public Equity() {
 
-    }
+    }//FALTA EQUITY CASO BASE DE 5 CARTAS BOARD Y EL OMAHA
 
     public ArrayList<Double> getPorcentajes() {
         return porcentajes;

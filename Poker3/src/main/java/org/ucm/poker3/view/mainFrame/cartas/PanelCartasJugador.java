@@ -26,8 +26,7 @@ public class PanelCartasJugador extends JPanel implements Observer{
 
     public PanelCartasJugador(Jugador jugador,Controller ctrl) {
         this.ctrl = ctrl;
-        ctrl.addObserver(this);
-        ctrl.addJugador(jugador);
+        ctrl.addFuturoObserver(this);
         this.jugador = jugador;
         iniGUI();
     }
@@ -104,6 +103,8 @@ public class PanelCartasJugador extends JPanel implements Observer{
     @Override
     public void hacerFold(int numJug) {
         //hacer
+        
+        lP.setText("Fold");
     }
 
     @Override
