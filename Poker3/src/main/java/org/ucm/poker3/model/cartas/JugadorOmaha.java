@@ -43,4 +43,7 @@ public class JugadorOmaha {
         return numJugador;
     }
     
+    public boolean getActivo(){
+        return activo;
+    }    
 }

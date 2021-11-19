@@ -100,7 +100,7 @@ public class Controller {
         Runnable runner = new Runnable() {
             public void run() {
                 String[] info;
-                e.calculateEquity(jugadores, mazo, board, pF, modoNormal);
+                e.calculateEquity(jugadores, mazo, board, pF, modoNormal,jugadoresOmaha);
                 for (Observer o : obs) {
                     o.actualizaEquity(e.getPorcentajes());
                 }

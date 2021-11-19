@@ -123,43 +123,43 @@ public class Util {
                 case 0: {
                     switch (nJug) {
                         case 2:
-                            return 1712304;
-                        case 3:
-                            return 1370754;
-                        case 4:
                             return 1086008;
-                        case 5:
-                            return 850668;
-                        case 6:
+                        case 3:
                             return 658008;
+                        case 4:
+                            return 376992;
+                        case 5:
+                            return 201376;
+                        case 6:
+                            return 98280;
                     }
                 }
                 case 3: {
                     switch (nJug) {
                         case 2:
-                            return 990;
-                        case 3:
-                            return 903;
-                        case 4:
                             return 820;
-                        case 5:
-                            return 741;
-                        case 6:
+                        case 3:
                             return 666;
+                        case 4:
+                            return 528;
+                        case 5:
+                            return 406;
+                        case 6:
+                            return 300;
                     }
                 }
                 case 4: {
                     switch (nJug) {
                         case 2:
-                            return 44;
-                        case 3:
-                            return 42;
-                        case 4:
                             return 40;
-                        case 5:
-                            return 38;
-                        case 6:
+                        case 3:
                             return 36;
+                        case 4:
+                            return 32;
+                        case 5:
+                            return 28;
+                        case 6:
+                            return 24;
                     }
                 }
 
