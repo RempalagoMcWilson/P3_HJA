@@ -70,53 +70,102 @@ public class Util {
                 return a.toString();
         }
     }
-    
-    public static int getNumJug(int nJug, int cartasEnBoard){
-        switch(cartasEnBoard){
-            case 0:{
-                switch(nJug){
-                    case 2:
-                        return 1712304;
-                    case 3:
-                        return 1370754;
-                    case 4:
-                        return 1086008;
-                    case 5:
-                        return 850668;
-                    case 6:
-                        return 658008;
+
+    public static int getNumJug(int nJug, int cartasEnBoard, boolean modoNormal) {
+        if (modoNormal) {
+            switch (cartasEnBoard) {
+                case 0: {
+                    switch (nJug) {
+                        case 2:
+                            return 1712304;
+                        case 3:
+                            return 1370754;
+                        case 4:
+                            return 1086008;
+                        case 5:
+                            return 850668;
+                        case 6:
+                            return 658008;
+                    }
                 }
-            }
-            case 3:{
-                switch(nJug){
-                    case 2:
-                        return 990;
-                    case 3:
-                        return 903;
-                    case 4:
-                        return 820;
-                    case 5:
-                        return 741;
-                    case 6:
-                        return 666;
+                case 3: {
+                    switch (nJug) {
+                        case 2:
+                            return 990;
+                        case 3:
+                            return 903;
+                        case 4:
+                            return 820;
+                        case 5:
+                            return 741;
+                        case 6:
+                            return 666;
+                    }
                 }
-            }
-            case 4:{
-                switch(nJug){
-                    case 2:
-                        return 44;
-                    case 3:
-                        return 42;
-                    case 4:
-                        return 40;
-                    case 5:
-                        return 38;
-                    case 6:
-                        return 36;
+                case 4: {
+                    switch (nJug) {
+                        case 2:
+                            return 44;
+                        case 3:
+                            return 42;
+                        case 4:
+                            return 40;
+                        case 5:
+                            return 38;
+                        case 6:
+                            return 36;
+                    }
                 }
+
             }
-                
+        } else {
+            switch (cartasEnBoard) {//Falta calcular las de omaha
+                case 0: {
+                    switch (nJug) {
+                        case 2:
+                            return 1712304;
+                        case 3:
+                            return 1370754;
+                        case 4:
+                            return 1086008;
+                        case 5:
+                            return 850668;
+                        case 6:
+                            return 658008;
+                    }
+                }
+                case 3: {
+                    switch (nJug) {
+                        case 2:
+                            return 990;
+                        case 3:
+                            return 903;
+                        case 4:
+                            return 820;
+                        case 5:
+                            return 741;
+                        case 6:
+                            return 666;
+                    }
+                }
+                case 4: {
+                    switch (nJug) {
+                        case 2:
+                            return 44;
+                        case 3:
+                            return 42;
+                        case 4:
+                            return 40;
+                        case 5:
+                            return 38;
+                        case 6:
+                            return 36;
+                    }
+                }
+
+            }
         }
+
         return 0;
     }
 }

@@ -3,6 +3,8 @@ package org.ucm.poker3.view.mainFrame.opciones;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -115,8 +117,12 @@ public class PanelOpcionesJugador extends JPanel {
                             int c2 = rand.nextInt(13) + 2;
                             char p2 = Util.numAPalo(rand.nextInt(4));
                             int nJ = (int) numJugador.getValue();
-
-                            j = new Jugador(new Carta(c1, p1, true), new Carta(c2, p2, true), nJ);
+                            if(c1 >= c2){
+                                j = new Jugador(new Carta(c1, p1, true), new Carta(c2, p2, true), nJ);
+                            }
+                            else{
+                                j = new Jugador(new Carta(c2, p2, true), new Carta(c1, p1, true), nJ);
+                            }
                             if (j.getCarta1().equals(j.getCarta2())) {
                                 excep = "mal";
                             } else {
@@ -143,7 +149,7 @@ public class PanelOpcionesJugador extends JPanel {
                             int c4 = rand.nextInt(13) + 2;
                             char p4 = Util.numAPalo(rand.nextInt(4));
                             int nJ = (int) numJugador.getValue();
-                            jO = new JugadorOmaha(new Carta(c1, p1, true), new Carta(c2, p2, true),
+                            jO = ordenaJO(new Carta(c1, p1, true), new Carta(c2, p2, true),
                                     new Carta(c3, p3, true), new Carta(c4, p4, true), nJ);
                             if (jO.getCarta1().equals(jO.getCarta2())
                                     || jO.getCarta1().equals(jO.getCarta3())
@@ -224,5 +230,13 @@ public class PanelOpcionesJugador extends JPanel {
                 }
             }
         });
+    }
+    
+    
+    private JugadorOmaha ordenaJO(Carta c1,Carta c2,Carta c3,Carta c4, int nJ){
+        ArrayList<Carta> lAux = new ArrayList();
+        lAux.add(c1);lAux.add(c2);lAux.add(c3);lAux.add(c4);
+        Collections.sort(lAux);
+        return new JugadorOmaha(lAux.get(0), lAux.get(1), lAux.get(2), lAux.get(3), nJ);
     }
 }

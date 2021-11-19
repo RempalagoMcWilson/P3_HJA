@@ -6,11 +6,16 @@ import javax.swing.JLabel;
 
 
 public class labelPorcentajes extends JLabel{
-    public labelPorcentajes(){
-        iniGUI();
+    public labelPorcentajes(boolean modoNormal){
+        iniGUI(modoNormal);
     }
-    private void iniGUI(){
-        setBounds(0, 120, 100, 20);
+    private void iniGUI(boolean modoNormal){
+        if(modoNormal){
+            setBounds(0, 120, 100, 20);
+        }
+        else{
+            setBounds(0, 120, 115, 20);
+        }       
         setBackground(Color.white);
         setText("0.0%");
     }

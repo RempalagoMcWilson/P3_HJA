@@ -117,7 +117,20 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
     @Override
     public void meterCartaJugOmaha(JugadorOmaha j) {
-
+        getContentPane().removeAll();
+        PanelCartasJugadorOmaha pAux = new PanelCartasJugadorOmaha(j, ctrl);
+        for (PanelCartasJugadorOmaha pcJa : listaCJo) {
+            getContentPane().add(pcJa);
+        }
+        listaCJo.add(pAux);
+        getContentPane().add(pAux);
+        for (PanelCartaBoard pCBa : listaCB) {
+            getContentPane().add(pCBa);
+        }
+        getContentPane().add(mP);
+        getContentPane().add(labelFoto);
+        getContentPane().revalidate();
+        getContentPane().repaint();
     }
 
     @Override

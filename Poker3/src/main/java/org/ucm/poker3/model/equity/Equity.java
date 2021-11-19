@@ -35,8 +35,8 @@ public class Equity {
         return porcentajes;
     }
 
-    public void calculateEquity(ArrayList<Jugador> jugadores, MazoCartas mazo, Board board, PorcentajeFrame pF) {
-        combTotales = Util.getNumJug(jugadores.size(), board.getNumCartas());
+    public void calculateEquity(ArrayList<Jugador> jugadores, MazoCartas mazo, Board board, PorcentajeFrame pF, boolean modoNormal) {
+        combTotales = Util.getNumJug(jugadores.size(), board.getNumCartas(), modoNormal);
         this.pF = pF;
         this.jugadores = jugadores;
         totales = 0;
@@ -60,16 +60,50 @@ public class Equity {
         }
         calculado = new HashSet<>();
 
-        llamaCombinaciones();
+        if (modoNormal) {
+            calcularModoNormal();
+        } else {
+            calcularModoOmaha();
+        }
 
         for (int i = 0; i < jugadores.size(); i++) {
             Double auxD = (numGanados.get(i) / totales) * 100.0;
             new DecimalFormat("#.##").format(auxD);
-            //System.out.println( (i+1) + " " +numGanados.get(i) + " " + jugadores.get(i).getCarta1() + "" +jugadores.get(i).getCarta2());
             porcentajes.add(auxD);
         }
         System.out.println(totales);
         pF.dispose();
+    }
+
+    private void calcularModoNormal() {
+        TreeMap<Solucion, Integer> mapa = new TreeMap<>();
+        if (boardActual.size() == 5) {
+            for (Jugador j : jugadores) {
+                if (j.getActivo()) {
+                    Mano aux = new Mano();
+                    mapa.put(aux.calcula(j, boardActual), j.getNumJugador() - 1);
+                }
+            }
+            Map.Entry<Solucion, Integer> entry = mapa.firstEntry();
+            int auxI = numGanados.get(entry.getValue());
+            auxI++;
+            numGanados.set(entry.getValue(), auxI);
+            totales++;
+            double p = (totales / combTotales) * 100.00;
+            if ((p - (int) p) <= 0.001) {
+                pF.actualizaPorcentaje((int) p);
+            }
+        } else {
+            llamaCombinaciones();
+        }
+    }
+
+    private void calcularModoOmaha() {
+        if (boardActual.size() == 5) {
+
+        } else {
+            llamaCombinaciones();
+        }
     }
 
     private void llamaCombinaciones() {
@@ -103,13 +137,13 @@ public class Equity {
         }
         p.println("------");*/
         for (Jugador j : jugadores) {
-            if(j.getActivo()){
+            if (j.getActivo()) {
                 Mano aux = new Mano();
                 mapa.put(aux.calcula(j, board), j.getNumJugador() - 1);
             }
-            
+
         }
-        Map.Entry<Solucion, Integer> entry = mapa.firstEntry();      
+        Map.Entry<Solucion, Integer> entry = mapa.firstEntry();
         int auxI = numGanados.get(entry.getValue());
         auxI++;
         numGanados.set(entry.getValue(), auxI);
@@ -117,9 +151,9 @@ public class Equity {
         double p = (totales / combTotales) * 100.00;//376740  98280
 
         //new DecimalFormat("#.##").format(p);
-        if ((p-(int)p)<=0.001) {
+        if ((p - (int) p) <= 0.001) {
             pF.actualizaPorcentaje((int) p);
-        //System.out.println(p);//totales + " " +*
+            //System.out.println(p);//totales + " " +*
         }
     }
 

@@ -66,7 +66,7 @@ public class PanelCartasJugador extends JPanel implements Observer{
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        lP = new labelPorcentajes();
+        lP = new labelPorcentajes(true);
         add(lP);
 
     }
