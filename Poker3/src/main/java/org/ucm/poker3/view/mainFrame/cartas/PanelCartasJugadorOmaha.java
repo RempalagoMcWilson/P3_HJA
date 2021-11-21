@@ -117,8 +117,10 @@ public class PanelCartasJugadorOmaha extends JPanel implements Observer{
 
     @Override
     public void actualizaEquity(ArrayList<Double> porcentajes) {
-        Double aux = porcentajes.get(jugador.getNumJugador()-1);
-        lP.setText(aux + "%");
+        if (jugador.getActivo()) {           
+            Double aux = porcentajes.get(jugador.getNumJugador() - 1);
+            lP.setText(aux + "%");
+        }
     }
 
     @Override

@@ -1,4 +1,3 @@
-
 package org.ucm.poker3.view.mainFrame.cartas;
 
 import java.awt.Image;
@@ -15,7 +14,7 @@ import org.ucm.poker3.model.cartas.Jugador;
 import org.ucm.poker3.model.cartas.JugadorOmaha;
 import org.ucm.poker3.model.observer.Observer;
 
-public class PanelCartasJugador extends JPanel implements Observer{
+public class PanelCartasJugador extends JPanel implements Observer {
 
     private Jugador jugador;
     private JLabel fondo;
@@ -24,7 +23,7 @@ public class PanelCartasJugador extends JPanel implements Observer{
     private labelPorcentajes lP;
     private Controller ctrl;
 
-    public PanelCartasJugador(Jugador jugador,Controller ctrl) {
+    public PanelCartasJugador(Jugador jugador, Controller ctrl) {
         this.ctrl = ctrl;
         ctrl.addFuturoObserver(this);
         this.jugador = jugador;
@@ -82,7 +81,7 @@ public class PanelCartasJugador extends JPanel implements Observer{
             case 3:
                 setBounds(350, 400, 100, 140);
                 break;
-            case 4:                              
+            case 4:
                 setBounds(600, 400, 100, 140);
                 break;
             case 5:
@@ -96,35 +95,37 @@ public class PanelCartasJugador extends JPanel implements Observer{
 
     @Override
     public void actualizaEquity(ArrayList<Double> porcentajes) {
-        Double aux = porcentajes.get(jugador.getNumJugador()-1);
-        lP.setText(aux + "%");
+        if (jugador.getActivo()) {           
+            Double aux = porcentajes.get(jugador.getNumJugador() - 1);
+            lP.setText(aux + "%");
+        }
     }
 
     @Override
     public void hacerFold(int numJug) {
-        if(jugador.getNumJugador()== numJug)
+        if (jugador.getNumJugador() == numJug) {
             lP.setText("Fold");
+        }
     }
 
     @Override
     public void meterCartaJug(Jugador j) {
-        
+
     }
 
     @Override
     public void meterCartaJugOmaha(JugadorOmaha j) {
-        
+
     }
 
     @Override
     public void meterBoard(Board board) {
-        
+
     }
 
     @Override
     public void reset() {
-        
-    }
 
+    }
 
 }

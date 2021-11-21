@@ -45,7 +45,7 @@ public class Equity {
         } else {
             combTotales = Util.getNumJug(jugadoresOmaha.size(), board.getNumCartas(), modoNormal);
         }
-        
+
         this.pF = pF;
         if (modoNormal) {
             this.jugadores = jugadores;
@@ -85,19 +85,18 @@ public class Equity {
         } else {
             calcularModoOmaha();
         }
-
         if (modoNormal) {
             for (int i = 0; i < jugadores.size(); i++) {
                 Double auxD = (numGanados.get(i) / totales) * 100.0;
                 Double truncatedDouble = BigDecimal.valueOf(auxD)
-                    .setScale(3, RoundingMode.HALF_UP).doubleValue();
+                        .setScale(3, RoundingMode.HALF_UP).doubleValue();
                 porcentajes.add(truncatedDouble);
             }
         } else {
             for (int i = 0; i < jugadoresOmaha.size(); i++) {
                 Double auxD = (numGanados.get(i) / totales) * 100.0;
                 Double truncatedDouble = BigDecimal.valueOf(auxD)
-                    .setScale(3, RoundingMode.HALF_UP).doubleValue();
+                        .setScale(3, RoundingMode.HALF_UP).doubleValue();
                 porcentajes.add(truncatedDouble);
             }
         }
