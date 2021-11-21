@@ -1,5 +1,7 @@
 package org.ucm.poker3.model.equity;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -38,7 +40,12 @@ public class Equity {
     }
 
     public void calculateEquity(ArrayList<Jugador> jugadores, MazoCartas mazo, Board board, PorcentajeFrame pF, boolean modoNormal, ArrayList<JugadorOmaha> jugadoresOmaha) {
-        combTotales = Util.getNumJug(jugadores.size(), board.getNumCartas(), modoNormal);
+        if (modoNormal) {
+            combTotales = Util.getNumJug(jugadores.size(), board.getNumCartas(), modoNormal);
+        } else {
+            combTotales = Util.getNumJug(jugadoresOmaha.size(), board.getNumCartas(), modoNormal);
+        }
+        
         this.pF = pF;
         if (modoNormal) {
             this.jugadores = jugadores;
@@ -82,14 +89,16 @@ public class Equity {
         if (modoNormal) {
             for (int i = 0; i < jugadores.size(); i++) {
                 Double auxD = (numGanados.get(i) / totales) * 100.0;
-                new DecimalFormat("#.##").format(auxD);
-                porcentajes.add(auxD);
+                Double truncatedDouble = BigDecimal.valueOf(auxD)
+                    .setScale(3, RoundingMode.HALF_UP).doubleValue();
+                porcentajes.add(truncatedDouble);
             }
         } else {
             for (int i = 0; i < jugadoresOmaha.size(); i++) {
                 Double auxD = (numGanados.get(i) / totales) * 100.0;
-                new DecimalFormat("#.##").format(auxD);
-                porcentajes.add(auxD);
+                Double truncatedDouble = BigDecimal.valueOf(auxD)
+                    .setScale(3, RoundingMode.HALF_UP).doubleValue();
+                porcentajes.add(truncatedDouble);
             }
         }
         System.out.println(totales);

@@ -117,11 +117,13 @@ public class Controller {
         board = new Board();
         jugadores = new ArrayList();
         jugadoresOmaha = new ArrayList();
-        //modoNormal = true;
         for (Observer o : obs) {
             o.reset();
         }
-        obs = futurosObs;
+        obs = new ArrayList<Observer>();
+        for (Observer o : futurosObs) {
+            addObserver(o);
+        }
         futurosObs = new ArrayList<Observer>();
     }
 
