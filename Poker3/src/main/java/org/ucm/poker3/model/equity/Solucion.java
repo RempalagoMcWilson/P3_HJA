@@ -1,6 +1,8 @@
 
 package org.ucm.poker3.model.equity;
 
+import java.util.Objects;
+
 public class Solucion implements Comparable<Solucion>{
      private int jugada;
     private int tipo; // pareja 1 de full house o doble pareja
@@ -213,7 +215,7 @@ public class Solucion implements Comparable<Solucion>{
         ComparadorSoluciones comp = new ComparadorSoluciones();
         if(this.jugada > o.getJugada()) return 1;
         else if(this.jugada == o.getJugada()){
-            if(this == comp.compara(this, o))
+            if(this.equals(comp.compara(this, o)))
                 return 1;
             else
                 return -1;
@@ -221,4 +223,54 @@ public class Solucion implements Comparable<Solucion>{
         else
             return -1;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 41 * hash + this.jugada;
+        hash = 41 * hash + this.tipo;
+        hash = 41 * hash + this.tipo2;
+        hash = 41 * hash + Objects.hashCode(this.mano);
+        hash = 41 * hash + Objects.hashCode(this.drawSg);
+        hash = 41 * hash + Objects.hashCode(this.drawSo);
+        hash = 41 * hash + Objects.hashCode(this.drawF);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Solucion other = (Solucion) obj;
+        if (this.jugada != other.jugada) {
+            return false;
+        }
+        if (this.tipo != other.tipo) {
+            return false;
+        }
+        if (this.tipo2 != other.tipo2) {
+            return false;
+        }
+        if (!Objects.equals(this.mano, other.mano)) {
+            return false;
+        }
+        if (!Objects.equals(this.drawSg, other.drawSg)) {
+            return false;
+        }
+        if (!Objects.equals(this.drawSo, other.drawSo)) {
+            return false;
+        }
+        if (!Objects.equals(this.drawF, other.drawF)) {
+            return false;
+        }
+        return true;
+    }
+    
 }

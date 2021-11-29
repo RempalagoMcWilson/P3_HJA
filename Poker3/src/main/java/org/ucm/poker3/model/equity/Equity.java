@@ -21,7 +21,7 @@ public class Equity {
 
     private ArrayList<Double> porcentajes;
     private double totales = 0;
-    private ArrayList<Integer> numGanados;
+    private ArrayList<Double> numGanados;
     private ArrayList<Jugador> jugadores;
     private ArrayList<JugadorOmaha> jugadoresOmaha;
     private Board boardActual;
@@ -33,7 +33,7 @@ public class Equity {
 
     public Equity() {
 
-    }//FALTA EQUITY CASO BASE DE 5 CARTAS BOARD Y EL OMAHA
+    }
 
     public ArrayList<Double> getPorcentajes() {
         return porcentajes;
@@ -55,14 +55,14 @@ public class Equity {
         totales = 0;
         cont = board.size();
         porcentajes = new ArrayList<Double>();
-        numGanados = new ArrayList<Integer>();
+        numGanados = new ArrayList<Double>();
         if (modoNormal) {
             for (int i = 0; i < jugadores.size(); i++) {
-                numGanados.add(0);
+                numGanados.add(0.0);
             }
         } else {
             for (int i = 0; i < jugadoresOmaha.size(); i++) {
-                numGanados.add(0);
+                numGanados.add(0.0);
             }
         }
 
@@ -87,6 +87,7 @@ public class Equity {
         }
         if (modoNormal) {
             for (int i = 0; i < jugadores.size(); i++) {
+                System.out.println(numGanados.get(i));
                 Double auxD = (numGanados.get(i) / totales) * 100.0;
                 Double truncatedDouble = BigDecimal.valueOf(auxD)
                         .setScale(3, RoundingMode.HALF_UP).doubleValue();
@@ -114,10 +115,11 @@ public class Equity {
                     mapa.put(aux.calcula(j, boardActual), j.getNumJugador() - 1);
                 }
             }
+            sumaPuntos(mapa);/*
             Map.Entry<Solucion, Integer> entry = mapa.firstEntry();
             int auxI = numGanados.get(entry.getValue());
             auxI++;
-            numGanados.set(entry.getValue(), auxI);
+            numGanados.set(entry.getValue(), auxI);*/
             totales++;
             double p = (totales / combTotales) * 100.00;
             if ((p - (int) p) <= 0.001) {
@@ -137,10 +139,11 @@ public class Equity {
                     mapa.put(aux.calculaO(j, boardActual), j.getNumJugador() - 1);
                 }
             }
+            sumaPuntos(mapa);/*
             Map.Entry<Solucion, Integer> entry = mapa.firstEntry();
             int auxI = numGanados.get(entry.getValue());
             auxI++;
-            numGanados.set(entry.getValue(), auxI);
+            numGanados.set(entry.getValue(), auxI);*/
             totales++;
             double p = (totales / combTotales) * 100.00;
             if ((p - (int) p) <= 0.001) {
@@ -207,10 +210,11 @@ public class Equity {
                 mapa.put(aux.calcula(j, board), j.getNumJugador() - 1);
             }
         }
-        Map.Entry<Solucion, Integer> entry = mapa.firstEntry();
-        int auxI = numGanados.get(entry.getValue());
-        auxI++;
-        numGanados.set(entry.getValue(), auxI);
+        sumaPuntos(mapa);
+        //Map.Entry<Solucion, Integer> entry = mapa.firstEntry();
+        //int auxI = numGanados.get(entry.getValue());
+        //auxI++;
+        //numGanados.set(entry.getValue(), auxI);
         totales++;
         double p = (totales / combTotales) * 100.00;
         if ((p - (int) p) <= 0.001) {
@@ -226,10 +230,11 @@ public class Equity {
                 mapa.put(aux.calculaO(j, board), j.getNumJugador() - 1);
             }
         }
-        Map.Entry<Solucion, Integer> entry = mapa.firstEntry();
+        sumaPuntos(mapa);
+        /*Map.Entry<Solucion, Integer> entry = mapa.firstEntry();
         int auxI = numGanados.get(entry.getValue());
         auxI++;
-        numGanados.set(entry.getValue(), auxI);
+        numGanados.set(entry.getValue(), auxI);*/
         totales++;
         double p = (totales / combTotales) * 100.00;
         if ((p - (int) p) <= 0.001) {
@@ -244,5 +249,25 @@ public class Equity {
         }
         aux.ordenar();
         return aux;
+    }
+
+    private void sumaPuntos(TreeMap<Solucion, Integer> mapa) {
+        ComparadorSoluciones comp = new ComparadorSoluciones();
+        int contA = 0;ArrayList<Integer> listaJugGanadores = new ArrayList();
+        Map.Entry<Solucion, Integer> entryPrimero = mapa.firstEntry();
+        listaJugGanadores.add(entryPrimero.getValue());      
+        for (Map.Entry<Solucion, Integer> entry : mapa.entrySet()) {
+            if(contA != 0){
+                if(comp.sonIguales(entryPrimero.getKey(),entry.getKey())){
+                    listaJugGanadores.add(entry.getValue());
+                }
+            }
+            contA++;
+        }
+        for(Integer i : listaJugGanadores){
+            Double auxI = numGanados.get(i);
+            auxI = auxI  + (1.0/listaJugGanadores.size());
+            numGanados.set(i, auxI);
+        }
     }
 }

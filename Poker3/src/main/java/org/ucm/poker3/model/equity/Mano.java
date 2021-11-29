@@ -123,12 +123,12 @@ public class Mano {
                         && lista.get(4).getPalo() == lista.get(0).getPalo()) {
 
                     if (lista.get(4).getNum() == 10 && lista.get(0).getNum() == 14) {//Escalera Real
-                        escaleraReal = "RoyalFlush " + manoOrd;
+                        escaleraReal = manoOrd;
                     } else {//Escalera de color
-                        escaleraColor = "Straight Flush " + manoOrd;
+                        escaleraColor = manoOrd;
                     }
                 } else {//escalera normal
-                    escalera = "Straight " + manoOrd;
+                    escalera = manoOrd;
                 }
             }
         }
