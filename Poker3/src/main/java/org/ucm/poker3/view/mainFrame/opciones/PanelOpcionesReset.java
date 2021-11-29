@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import org.ucm.poker3.control.Controller;
@@ -28,7 +29,8 @@ public class PanelOpcionesReset extends JPanel{
         resetB = new JButton();
         resetB.setBounds(10, 20, 300, 30);
         resetB.setText("RESET");
-        resetB.setBackground(new Color(140,190,240));
+        resetB.setBackground(new Color(112, 146, 179));
+        resetB.setBorder(new BevelBorder(BevelBorder.RAISED));
         resetBListener();
         Border b = BorderFactory.createLineBorder(Color.black, 2);
         setBorder(BorderFactory.createTitledBorder(b, "Hacer RESET ", TitledBorder.LEFT, TitledBorder.TOP));

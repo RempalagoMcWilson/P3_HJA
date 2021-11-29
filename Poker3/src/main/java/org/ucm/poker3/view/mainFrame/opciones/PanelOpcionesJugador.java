@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import org.ucm.poker3.control.Controller;
@@ -58,19 +59,22 @@ public class PanelOpcionesJugador extends JPanel {
         foldB = new JButton();
         foldB.setBounds(210, 20, 100, 30);
         foldB.setText("FOLD");
-        foldB.setBackground(new Color(140, 190, 240));
+        foldB.setBackground(new Color(112, 146, 179));
+        foldB.setBorder(new BevelBorder(BevelBorder.RAISED));       
         foldBListener();
 
         randomB = new JButton();
         randomB.setBounds(10, 70, 130, 30);
         randomB.setText("ALEATORIO");
-        randomB.setBackground(new Color(140, 190, 240));
+        randomB.setBackground(new Color(112, 146, 179));
+        randomB.setBorder(new BevelBorder(BevelBorder.RAISED));
         randomBListener();
 
         okB = new JButton();
         okB.setBounds(210, 70, 100, 30);
         okB.setText("METER");
-        okB.setBackground(new Color(140, 190, 240));
+        okB.setBackground(new Color(112, 146, 179));
+        okB.setBorder(new BevelBorder(BevelBorder.RAISED));
         okBListener();
 
         infoTField = new JLabel();

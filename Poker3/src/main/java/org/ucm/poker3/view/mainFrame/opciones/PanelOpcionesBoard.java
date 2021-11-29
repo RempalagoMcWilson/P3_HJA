@@ -3,7 +3,6 @@ package org.ucm.poker3.view.mainFrame.opciones;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javax.swing.BorderFactory;
@@ -14,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import org.ucm.poker3.control.Controller;
@@ -56,13 +56,15 @@ public class PanelOpcionesBoard extends JPanel {
         randomB = new JButton();
         randomB.setBounds(10, 70, 130, 30);
         randomB.setText("ALEATORIO");
-        randomB.setBackground(new Color(140, 190, 240));
+        randomB.setBackground(new Color(112, 146, 179));
+        randomB.setBorder(new BevelBorder(BevelBorder.RAISED));
         randomBListener();
 
         okB = new JButton();
         okB.setBounds(210, 70, 100, 30);
         okB.setText("METER");
-        okB.setBackground(new Color(140, 190, 240));
+        okB.setBackground(new Color(112, 146, 179));
+        okB.setBorder(new BevelBorder(BevelBorder.RAISED));
         okBListener();
 
         infoTField = new JLabel();

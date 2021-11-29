@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import org.ucm.poker3.control.Controller;
@@ -28,7 +29,8 @@ public class PanelOpcionesModoJuego extends JPanel {
         modoB = new JButton();
         modoB.setBounds(10, 20, 300, 30);
         modoB.setText("CAMBIAR A OMAHA");
-        modoB.setBackground(new Color(140, 190, 240));
+        modoB.setBackground(new Color(112, 146, 179));
+        modoB.setBorder(new BevelBorder(BevelBorder.RAISED));
         modoBListener();
         Border b = BorderFactory.createLineBorder(Color.black, 2);
         setBorder(BorderFactory.createTitledBorder(b, "Cambiar MODO de JUEGO ", TitledBorder.LEFT, TitledBorder.TOP));
