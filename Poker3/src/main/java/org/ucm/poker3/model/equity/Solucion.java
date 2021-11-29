@@ -216,9 +216,9 @@ public class Solucion implements Comparable<Solucion>{
         if(this.jugada > o.getJugada()) return 1;
         else if(this.jugada == o.getJugada()){
             if(this.equals(comp.compara(this, o)))
-                return 1;
-            else
                 return -1;
+            else
+                return 1;
         }
         else
             return -1;

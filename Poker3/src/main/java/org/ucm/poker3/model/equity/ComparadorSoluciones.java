@@ -127,7 +127,7 @@ public class ComparadorSoluciones {
     }
 
     private boolean Poker(Solucion sol1, Solucion sol2) {
-        if (sol1.getTipo() >= sol2.getTipo()) {
+        if (sol1.getTipo() > sol2.getTipo()) {
             return true;
         } else if (sol1.getTipo() == sol2.getTipo()) {
             return CartaAlta(sol1, sol2);
@@ -140,7 +140,7 @@ public class ComparadorSoluciones {
         if (sol1.getTipo2() == sol2.getTipo2()) {
             return sol1.getTipo() >= sol2.getTipo();
         } else {
-            return sol1.getTipo2() < sol2.getTipo2();
+            return sol1.getTipo2() > sol2.getTipo2();
         }
 
     }
@@ -150,15 +150,14 @@ public class ComparadorSoluciones {
     }
 
     private boolean Escalera(Solucion sol1, Solucion sol2) {
-        return sol1.getMano().charAt(0) < sol2.getMano().charAt(0);
-
+        return sol1.getMano().charAt(0) > sol2.getMano().charAt(0);
     }
 
     private boolean Trio(Solucion sol1, Solucion sol2) {
         if (sol1.getTipo() == sol2.getTipo()) {
             return CartaAlta(sol1, sol2);
         } else {
-            return (sol1.getTipo() < sol2.getTipo());
+            return (sol1.getTipo() > sol2.getTipo());
         }
     }
 
@@ -167,10 +166,10 @@ public class ComparadorSoluciones {
             if (sol1.getTipo2() == sol2.getTipo2()) {
                 return CartaAlta(sol1, sol2);
             } else {
-                return sol1.getTipo2() >= sol2.getTipo2();
+                return sol1.getTipo2() > sol2.getTipo2();
             }
         } else {
-            return sol1.getTipo() < sol2.getTipo();
+            return sol1.getTipo() > sol2.getTipo();
         }
     }
 
@@ -178,7 +177,7 @@ public class ComparadorSoluciones {
         if (sol1.getTipo() == sol2.getTipo()) {
             return CartaAlta(sol1, sol2);
         } else {
-            return (sol1.getTipo() < sol2.getTipo());
+            return (sol1.getTipo() > sol2.getTipo());
         }
     }
 
