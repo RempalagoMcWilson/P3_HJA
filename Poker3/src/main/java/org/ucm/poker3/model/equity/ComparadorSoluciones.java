@@ -119,7 +119,7 @@ public class ComparadorSoluciones {
     }
 
     private boolean escaleraColor(Solucion sol1, Solucion sol2) {
-        if (sol1.getMano().charAt(0) >= sol2.getMano().charAt(0)) {
+        if (sol1.getMano().charAt(0) > sol2.getMano().charAt(0)) {
             return true;
         } else {
             return false;
@@ -138,7 +138,7 @@ public class ComparadorSoluciones {
 
     private boolean fullHouse(Solucion sol1, Solucion sol2) {
         if (sol1.getTipo2() == sol2.getTipo2()) {
-            return sol1.getTipo() >= sol2.getTipo();
+            return sol1.getTipo() > sol2.getTipo();
         } else {
             return sol1.getTipo2() > sol2.getTipo2();
         }
@@ -150,7 +150,9 @@ public class ComparadorSoluciones {
     }
 
     private boolean Escalera(Solucion sol1, Solucion sol2) {
-        return sol1.getMano().charAt(0) > sol2.getMano().charAt(0);
+        //System.out.println(sol1.getMano() + " " + sol2.getMano());
+        //return sol1.getMano().charAt(0) > sol2.getMano().charAt(0);
+        return CartaAlta(sol1, sol2);
     }
 
     private boolean Trio(Solucion sol1, Solucion sol2) {

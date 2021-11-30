@@ -114,15 +114,35 @@ public class Mano {
         }
 
         if (lista.size() == 5) {
+            if(lista.get(4).getNum() == 14 && lista.get(0).getNum() == 2 &&
+                    lista.get(3).getNum() - lista.get(0).getNum() == 3 ){
+                if (lista.get(4).getPalo() == lista.get(3).getPalo()
+                        && lista.get(4).getPalo() == lista.get(2).getPalo()
+                        && lista.get(4).getPalo() == lista.get(1).getPalo()
+                        && lista.get(4).getPalo() == lista.get(0).getPalo()) {
+                    escaleraColor = "1" + lista.get(4).getPalo() 
+                            + "2" + lista.get(0).getPalo()
+                            + "3" + lista.get(1).getPalo()
+                            + "4" + lista.get(2).getPalo()
+                            + "5" + lista.get(3).getPalo();
+                }
+                else{
+                    escalera = "1" + lista.get(4).getPalo() 
+                            + "2" + lista.get(0).getPalo()
+                            + "3" + lista.get(1).getPalo()
+                            + "4" + lista.get(2).getPalo()
+                            + "5" + lista.get(3).getPalo();
+                }
+            }
 
-            if (lista.get(4).getNum() - lista.get(0).getNum() == 4) {//hay escalera
+            else if (lista.get(4).getNum() - lista.get(0).getNum() == 4) {//hay escalera
 
                 if (lista.get(4).getPalo() == lista.get(3).getPalo()// Escalera de color o Real
                         && lista.get(4).getPalo() == lista.get(2).getPalo()
                         && lista.get(4).getPalo() == lista.get(1).getPalo()
                         && lista.get(4).getPalo() == lista.get(0).getPalo()) {
 
-                    if (lista.get(4).getNum() == 10 && lista.get(0).getNum() == 14) {//Escalera Real
+                    if (lista.get(0).getNum() == 10 && lista.get(4).getNum() == 14) {//Escalera Real
                         escaleraReal = manoOrd;
                     } else {//Escalera de color
                         escaleraColor = manoOrd;
@@ -131,26 +151,7 @@ public class Mano {
                     escalera = manoOrd;
                 }
             }
-        }
-        /*
-            else if(lista.get(3).getNum() - lista.get(0).getNum() == 4 || lista.get(4).getNum() - lista.get(1).getNum() == 4){
-                drawSg = "gutshot " + manoOrd;
-            } 
-            else if(lista.get(3).getNum() - lista.get(0).getNum() == 3 || lista.get(4).getNum() - lista.get(1).getNum() == 3){//esto lo tengo que terminar               
-                drawSo = "open-ended " + manoOrd;
-            }*/
- /*
-        else if (lista.size() == 4){
-            if(lista.get(3).getNum() -  lista.get(0).getNum()== 4){
-                
-                    drawSg = "gutshot " + manoOrd;
-            }
-            else if(lista.get(2).getNum() - lista.get(0).getNum() == 3 || lista.get(3).getNum() - lista.get(1).getNum() == 3){//esto lo tengo que terminar               
-                drawSo = "open-ended " + manoOrd;
-            }
-        }*/
-
- /*
+        }/*
         1. Escalera real de color (cartas 10, J, Q, K y A del mismo palo)
         2. Escalera de color
         3. Poker
