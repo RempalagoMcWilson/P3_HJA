@@ -2,7 +2,6 @@ package org.ucm.poker3.model.equity;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import java.util.HashSet;
@@ -87,7 +86,6 @@ public class Equity {
         }
         if (modoNormal) {
             for (int i = 0; i < jugadores.size(); i++) {
-                //System.out.println(numGanados.get(i));
                 Double auxD = (numGanados.get(i) / totales) * 100.0;
                 Double truncatedDouble = BigDecimal.valueOf(auxD)
                         .setScale(3, RoundingMode.HALF_UP).doubleValue();
@@ -95,7 +93,6 @@ public class Equity {
             }
         } else {
             for (int i = 0; i < jugadoresOmaha.size(); i++) {
-                //System.out.println(numGanados.get(i));
                 Double auxD = (numGanados.get(i) / totales) * 100.0;
                 Double truncatedDouble = BigDecimal.valueOf(auxD)
                         .setScale(3, RoundingMode.HALF_UP).doubleValue();
@@ -116,11 +113,7 @@ public class Equity {
                     mapa.put(aux.calcula(j, boardActual), j.getNumJugador() - 1);
                 }
             }
-            sumaPuntos(mapa);/*
-            Map.Entry<Solucion, Integer> entry = mapa.firstEntry();
-            int auxI = numGanados.get(entry.getValue());
-            auxI++;
-            numGanados.set(entry.getValue(), auxI);*/
+            sumaPuntos(mapa);
             totales++;
             double p = (totales / combTotales) * 100.00;
             if ((p - (int) p) <= 0.001) {

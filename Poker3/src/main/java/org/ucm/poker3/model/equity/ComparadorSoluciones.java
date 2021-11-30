@@ -150,8 +150,6 @@ public class ComparadorSoluciones {
     }
 
     private boolean Escalera(Solucion sol1, Solucion sol2) {
-        //System.out.println(sol1.getMano() + " " + sol2.getMano());
-        //return sol1.getMano().charAt(0) > sol2.getMano().charAt(0);
         return CartaAlta(sol1, sol2);
     }
 
