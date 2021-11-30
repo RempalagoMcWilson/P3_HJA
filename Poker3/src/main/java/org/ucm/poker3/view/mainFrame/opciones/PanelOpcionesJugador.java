@@ -60,7 +60,7 @@ public class PanelOpcionesJugador extends JPanel {
         foldB.setBounds(210, 20, 100, 30);
         foldB.setText("FOLD");
         foldB.setBackground(new Color(112, 146, 179));
-        foldB.setBorder(new BevelBorder(BevelBorder.RAISED));       
+        foldB.setBorder(new BevelBorder(BevelBorder.RAISED));
         foldBListener();
 
         randomB = new JButton();
@@ -97,7 +97,7 @@ public class PanelOpcionesJugador extends JPanel {
         foldB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                ctrl.fold((int)numJugador.getValue());
+                ctrl.fold((int) numJugador.getValue());
             }
         });
     }
@@ -110,71 +110,75 @@ public class PanelOpcionesJugador extends JPanel {
                 Random rand = new Random();
                 boolean normal = ctrl.getModo();
                 boolean bien = false;
+                int nJ = (int) numJugador.getValue();
                 Jugador j = null;
                 JugadorOmaha jO = null;
-                if (normal) {
-                    while (!bien) {
-                        excep = "nada";
-                        try {
-                            int c1 = rand.nextInt(13) + 2;
-                            char p1 = Util.numAPalo(rand.nextInt(4));
-                            int c2 = rand.nextInt(13) + 2;
-                            char p2 = Util.numAPalo(rand.nextInt(4));
-                            int nJ = (int) numJugador.getValue();
-                            if(c1 >= c2){
-                                j = new Jugador(new Carta(c1, p1, true), new Carta(c2, p2, true), nJ);
-                            }
-                            else{
-                                j = new Jugador(new Carta(c2, p2, true), new Carta(c1, p1, true), nJ);
-                            }
-                            if (j.getCarta1().equals(j.getCarta2())) {
-                                excep = "mal";
-                            } else {
-                                ctrl.existeJugadorOCartaN(j);
-                            }
-                        } catch (Exception e) {
-                            excep = e.getMessage();
-                        }
-                        if (excep.equals("nada")) {
-                            ctrl.addJugador(j);
-                            bien = true;
-                        }
-                    }
+                if (ctrl.existeNumJug(nJ)) {
+                    JOptionPane.showMessageDialog(null, "Jugador ya en la mesa.", "Error message", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    while (!bien) {
-                        excep = "nada";
-                        try {
-                            int c1 = rand.nextInt(13) + 2;
-                            char p1 = Util.numAPalo(rand.nextInt(4));
-                            int c2 = rand.nextInt(13) + 2;
-                            char p2 = Util.numAPalo(rand.nextInt(4));
-                            int c3 = rand.nextInt(13) + 2;
-                            char p3 = Util.numAPalo(rand.nextInt(4));
-                            int c4 = rand.nextInt(13) + 2;
-                            char p4 = Util.numAPalo(rand.nextInt(4));
-                            int nJ = (int) numJugador.getValue();
-                            jO = ordenaJO(new Carta(c1, p1, true), new Carta(c2, p2, true),
-                                    new Carta(c3, p3, true), new Carta(c4, p4, true), nJ);
-                            if (jO.getCarta1().equals(jO.getCarta2())
-                                    || jO.getCarta1().equals(jO.getCarta3())
-                                    || jO.getCarta1().equals(jO.getCarta4())
-                                    || jO.getCarta2().equals(jO.getCarta3())
-                                    || jO.getCarta2().equals(jO.getCarta4())
-                                    || jO.getCarta3().equals(jO.getCarta4())) {
-                                excep = "mal";
-                            } else {
-                                ctrl.existeJugadorOCartaO(jO);
-                            }
+                    if (normal) {
+                        while (!bien) {
+                            excep = "nada";
+                            try {
+                                int c1 = rand.nextInt(13) + 2;
+                                char p1 = Util.numAPalo(rand.nextInt(4));
+                                int c2 = rand.nextInt(13) + 2;
+                                char p2 = Util.numAPalo(rand.nextInt(4));
 
-                        } catch (Exception e) {
-                            excep = e.getMessage();
+                                if (c1 >= c2) {
+                                    j = new Jugador(new Carta(c1, p1, true), new Carta(c2, p2, true), nJ);
+                                } else {
+                                    j = new Jugador(new Carta(c2, p2, true), new Carta(c1, p1, true), nJ);
+                                }
+                                if (j.getCarta1().equals(j.getCarta2())) {
+                                    excep = "mal";
+                                } else {
+                                    ctrl.existeJugadorOCartaN(j);
+                                }
+                            } catch (Exception e) {
+                                excep = e.getMessage();
+                            }
+                            if (excep.equals("nada")) {
+                                ctrl.addJugador(j);
+                                bien = true;
+                            }
                         }
-                        if (excep.equals("nada")) {
-                            ctrl.addJugadorOmaha(jO);
-                            bien = true;
+                    } else {
+                        while (!bien) {
+                            excep = "nada";
+                            try {
+                                int c1 = rand.nextInt(13) + 2;
+                                char p1 = Util.numAPalo(rand.nextInt(4));
+                                int c2 = rand.nextInt(13) + 2;
+                                char p2 = Util.numAPalo(rand.nextInt(4));
+                                int c3 = rand.nextInt(13) + 2;
+                                char p3 = Util.numAPalo(rand.nextInt(4));
+                                int c4 = rand.nextInt(13) + 2;
+                                char p4 = Util.numAPalo(rand.nextInt(4));
+                                jO = ordenaJO(new Carta(c1, p1, true), new Carta(c2, p2, true),
+                                        new Carta(c3, p3, true), new Carta(c4, p4, true), nJ);
+                                if (jO.getCarta1().equals(jO.getCarta2())
+                                        || jO.getCarta1().equals(jO.getCarta3())
+                                        || jO.getCarta1().equals(jO.getCarta4())
+                                        || jO.getCarta2().equals(jO.getCarta3())
+                                        || jO.getCarta2().equals(jO.getCarta4())
+                                        || jO.getCarta3().equals(jO.getCarta4())) {
+                                    excep = "mal";
+                                } else {
+                                    ctrl.existeJugadorOCartaO(jO);
+                                }
+
+                            } catch (Exception e) {
+                                excep = e.getMessage();
+                            }
+                            if (excep.equals("nada")) {
+                                ctrl.addJugadorOmaha(jO);
+                                bien = true;
+                            }
                         }
                     }
                 }
+
             }
         });
     }
@@ -235,11 +239,13 @@ public class PanelOpcionesJugador extends JPanel {
             }
         });
     }
-    
-    
-    private JugadorOmaha ordenaJO(Carta c1,Carta c2,Carta c3,Carta c4, int nJ){
+
+    private JugadorOmaha ordenaJO(Carta c1, Carta c2, Carta c3, Carta c4, int nJ) {
         ArrayList<Carta> lAux = new ArrayList();
-        lAux.add(c1);lAux.add(c2);lAux.add(c3);lAux.add(c4);
+        lAux.add(c1);
+        lAux.add(c2);
+        lAux.add(c3);
+        lAux.add(c4);
         Collections.sort(lAux);
         return new JugadorOmaha(lAux.get(0), lAux.get(1), lAux.get(2), lAux.get(3), nJ);
     }

@@ -182,31 +182,41 @@ public class ComparadorSoluciones {
     }
 
     private boolean CartaAlta(Solucion sol1, Solucion sol2) {
-        //System.out.println( sol1.getMano() + " " + sol2.getMano());
         if (sol1.getMano().length() > sol2.getMano().length()) {
-            return false;
+            return true;
         } else if (sol1.getMano().length() == sol2.getMano().length()) {
             for (int i = sol1.getMano().length() - 1; i >= 0; i--) {
-                
                 if (sol1.getMano().charAt(i) != 'c'
                         && sol1.getMano().charAt(i) != 'd'
                         && sol1.getMano().charAt(i) != 'h'
                         && sol1.getMano().charAt(i) != 's') {
-                    //System.out.println( sol1.getMano().charAt(i) + " " + sol2.getMano().charAt(i));
                     if (sol1.getMano().charAt(i) > sol2.getMano().charAt(i)) {
                         return true;
+                    }
+                    else if(sol1.getMano().charAt(i) < sol2.getMano().charAt(i)){
+                        return false;
                     }
                 }
             }
             return false;
         } else {
-            return true;
+            return false;
         }
     }
 
     public boolean sonIguales(Solucion sol1, Solucion sol2) {
         if (sol1.getJugada() == sol2.getJugada()) {
-            if (sol1.getMano().equals(sol2.getMano())) {
+            if (sol1.getMano().length() == sol2.getMano().length()) {
+                for (int i = sol1.getMano().length() - 1; i >= 0; i--) {
+                    if (sol1.getMano().charAt(i) != 'c'
+                            && sol1.getMano().charAt(i) != 'd'
+                            && sol1.getMano().charAt(i) != 'h'
+                            && sol1.getMano().charAt(i) != 's') {
+                        if (sol1.getMano().charAt(i) != sol2.getMano().charAt(i)) {
+                            return false;
+                        }
+                    }
+                }
                 return true;
             }
         }

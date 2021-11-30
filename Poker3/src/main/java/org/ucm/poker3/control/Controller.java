@@ -56,6 +56,10 @@ public class Controller {
         for (Observer o : obs) {
             o.meterCartaJugOmaha(j);
         }
+        for (Observer o : futurosObs) {
+            addObserver(o);
+        }
+        futurosObs = new ArrayList<Observer>();
     }
 
     public void setBoard(Board b) {
@@ -100,7 +104,7 @@ public class Controller {
         Runnable runner = new Runnable() {
             public void run() {
                 String[] info;
-                e.calculateEquity(jugadores, mazo, board, pF, modoNormal,jugadoresOmaha);
+                e.calculateEquity(jugadores, mazo, board, pF, modoNormal, jugadoresOmaha);
                 for (Observer o : obs) {
                     o.actualizaEquity(e.getPorcentajes());
                 }
@@ -275,6 +279,23 @@ public class Controller {
         return modoNormal;
     }
 
+    public boolean existeNumJug(int nJ) {
+        if (modoNormal) {
+            for (Jugador j1 : jugadores) {
+                if (j1.getNumJugador() == nJ) {
+                    return true;
+                }
+            }
+        } else {
+            for (JugadorOmaha j1 : jugadoresOmaha) {
+                if (j1.getNumJugador() == nJ) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public void fold(int numJug) {
         if (modoNormal) {
             for (Jugador j : jugadores) {
@@ -289,7 +310,7 @@ public class Controller {
                 }
             }
         }
-        for(Observer o: obs){
+        for (Observer o : obs) {
             o.hacerFold(numJug);
         }
 
